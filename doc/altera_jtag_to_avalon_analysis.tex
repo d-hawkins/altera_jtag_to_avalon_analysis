@@ -1,0 +1,1979 @@
+
+\documentclass[10pt,twoside]{article}
+
+% Math symbols
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Headers/Footers
+\usepackage{fancyhdr}
+
+% Colors
+\usepackage[usenames,dvipsnames]{color}
+
+% Importing and manipulating graphics
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{lscape}
+
+% Misc packages
+\usepackage{verbatim}
+\usepackage{dcolumn}
+\usepackage{ifpdf}
+\usepackage{enumerate}
+
+% PDF Bookmarks and hyperref stuff
+\usepackage[
+  bookmarks=true,
+  bookmarksnumbered=true,
+  colorlinks=true,
+  filecolor=blue,
+  linkcolor=blue,
+  urlcolor=blue,
+  hyperfootnotes=true
+  citecolor=blue
+]{hyperref}
+
+% Improved citation handling
+% (include after the hyperref stuff)
+\usepackage{cite}
+
+% Pretty-print code
+\usepackage{listings}
+
+% -----------------------------------------------------------------
+% Setup the margins
+% -----------------------------------------------------------------
+% Footer Template
+
+% Set left margin - The default is 1 inch, so the following
+% command sets a 1.25-inch left margin.
+\setlength{\oddsidemargin}{0.25in}
+\setlength{\evensidemargin}{0.25in}
+
+% Set width of the text - What is left will be the right
+% margin. In this case, right margin is
+% 8.5in - 1.25in - 6in = 1.25in.
+\setlength{\textwidth}{6in}
+
+% Set top margin - The default is 1 inch, so the following
+% command sets a 0.75-inch top margin.
+%\setlength{\topmargin}{-0.25in}
+
+% Set height of the header
+\setlength{\headheight}{0.3in}
+
+% Set vertical distance between the header and the text
+\setlength{\headsep}{0.2in}
+
+% Set height of the text
+\setlength{\textheight}{8.5in}
+
+% Set vertical distance between the text and the
+% bottom of footer
+\setlength{\footskip}{0.4in}
+
+% -----------------------------------------------------------------
+% Allow floats to take up more space on a page.
+% -----------------------------------------------------------------
+
+% see page 142 of the Companion for this stuff and the
+% documentation for the fancyhdr package
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+% dont make this too small
+\renewcommand{\floatpagefraction}{0.35}
+\setcounter{totalnumber}{5}
+
+%-----------------------------------------------------------
+% Abbreviated symbols
+%-----------------------------------------------------------
+\newcommand{\sinc}{\ensuremath{\,\text{sinc}}}
+\newcommand{\rect}{\ensuremath{\,\text{rect}}}
+\newcommand{\floor}{\ensuremath{\,\text{floor}}}
+
+% =================================================================
+% The document starts here
+% =================================================================
+%
+\begin{document}
+\title{Altera JTAG-to-Avalon Analysis}
+\author{D. W. Hawkins (dwh@ovro.caltech.edu)}
+\date{\today}
+%\date{December 13, 2010}
+\maketitle
+
+% No header/footer on the first page
+\thispagestyle{empty}
+
+\tableofcontents
+
+% start the intro on an odd page
+\cleardoublepage
+%\clearpage
+
+% Set up the header/footer
+\pagestyle{fancy}
+\lhead{Altera JTAG-to-Avalon Analysis}
+\chead{}
+\rhead{\today}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Set the listings package language to Tcl
+\lstset{language=Tcl}
+
+% =================================================================
+\section{Introduction}
+% =================================================================
+
+% -----------------------------------------------------------------
+% Altera JTAG Interface
+% -----------------------------------------------------------------
+%
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.85\textwidth]{figures/jtag_diagram.pdf}
+  \end{center}
+  \caption{Altera JTAG (IEEE 1149.1) Interface. JTAG transactions
+  consist of writing to the instruction register followed by
+  writing to or reading from the data register.}
+  \label{fig:jtag_diagram}
+\end{figure}
+% -----------------------------------------------------------------
+
+Efficient development and debugging of Altera
+\href{http://en.wikipedia.org/wiki/Fpga}{FPGA} based
+designs requires a detailed knowledge of the
+\href{http://en.wikipedia.org/wiki/Jtag}{JTAG} interface.
+The Altera FPGA JTAG interface has several uses;
+%
+\begin{itemize}
+\item The Quartus II programmer uses JTAG for FPGA configuration.
+\item The SignalTap II logic analyzer interface uses JTAG to communicate
+with the SignalTap II logic embedded in the FPGA.
+\item The NIOS II debug and JTAG-UART communicate with the NIOS II IDE
+via JTAG.
+\item The Qsys and SOPC Builder JTAG-to-Avalon-MM bridge component uses
+JTAG to generate Avalon-MM master transactions.
+\item The SLD Virtual JTAG component~\cite{Altera_Virtual_JTAG_2008}
+can be used to create custom components accessible via JTAG.
+\end{itemize}
+%
+The JTAG interface is a {\em synchronous} serial interface consisting of
+the JTAG clock (TCK), mode select (TMS), serial data in (TDI), and
+serial data out (TDO).
+Figure~\ref{fig:jtag_diagram} shows a diagram of the Altera JTAG
+interface~\cite{Altera_JTAG_Configuration}, while 
+Figure~\ref{fig:jtag_tap} shows the JTAG TAP controller
+finite state machine (FSM). 
+
+This document is the {\em missing manual} for Altera's JTAG-to-Avalon
+interfaces, it provides simulation details and hardware measurements.
+
+% -----------------------------------------------------------------
+% JTAG TAP Controller
+% -----------------------------------------------------------------
+%
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{figures/jtag_tap.pdf}
+  \end{center}
+  \caption{JTAG (IEEE 1149.1) Test Access Port (TAP) Controller.
+  State transitions are controlled by the JTAG clock (TCK) and
+  mode select (TMS) control.}
+  \label{fig:jtag_tap}
+\end{figure}
+% -----------------------------------------------------------------
+
+\clearpage
+% =================================================================
+\section{JTAG-to-Avalon Protocols}
+% =================================================================
+\label{sec:protocol}
+
+The Altera Avalon Specification~\cite{Altera_Interface_Specification_SOPC_2011,Altera_Interface_Specification_Qsys_2011} defines two interfaces;
+%
+\begin{itemize}
+\item Avalon Streaming (Avalon-ST) Interface
+\item Avalon Memory-Mapped (Avalon-MM) Interface
+\end{itemize}
+%
+The JTAG-to-Avalon-MM master consists of a JTAG-to-Avalon-ST 
+interface that converts JTAG serial transactions into byte streams in and
+out of the design, and bytes-to-packets conversion logic that 
+decodes and encodes a binary protocol transported over the byte
+streams. The binary protocol encodes whether to perform an Avalon-MM
+read or write transaction, and the response for each transaction 
+type.
+
+Access from the JTAG interface to the FPGA fabric is coordinated
+by the {\em System-Level Debug} (SLD) JTAG hub. This hub is automatically
+generated during synthesis (the component appears the Quartus II hierarchy 
+display). The JTAG-to-Avalon components are based on the Altera
+{\em SLD Virtual JTAG} Component~\cite{Altera_Virtual_JTAG_2008}
+(they are actually based on a variation of this component that allows
+a manufacturer ID, component ID and version to be specified).
+The Virtual JTAG component uses two JTAG instructions to create
+a Virtual Instruction Register (VIR) and a Virtual Data Register (VDR)
+that exist in the FPGA fabric. The JTAG-to-Avalon components use the
+VIR for selecting the component operating mode, and use the
+VDR path for mode-specific data registers.
+
+% -----------------------------------------------------------------
+\subsection{JTAG-to-Avalon-ST}
+% -----------------------------------------------------------------
+\label{sec:jtag_to_avalon_st}
+
+The JTAG-to-Avalon-ST bridge uses the Virtual JTAG interface to
+stream bytes into and out of the FPGA fabric, and to access
+control and status registers. 
+Table~\ref{tab:jtag_to_avalon_st_vir_codes} shows the VIR modes
+and the register bits.
+
+In {\em DATA} mode, the JTAG-to-Avalon-ST bridge generates
+byte-streams from the host-to-device and from the device-to-host.
+Each byte-stream starts with a 16-bit header, and is followed
+by encoded data.
+Table~\ref{tab:jtag_to_avalon_st_headers} shows the headers
+(see Section~\ref{sec:hardware} for encoding details),
+while Table~\ref{tab:jtag_to_avalon_st_protocol_codes}
+shows the data protocol. 
+The {\em IDLE} code indicates {\em no data} and can appear in 
+the host-to-device or device-to-host byte-streams.
+The {\em IDLE} code is used when the Avalon-ST byte-stream
+is unidirectional, eg., when the host is sending data to the
+device and the device has no response data, the device sends
+{\em IDLE} codes, and when the host needs to receive a
+device response and has no data to send, the host sends
+{\em IDLE} codes.
+
+The JTAG-to-Avalon-ST interface is designed to transport binary
+byte-streams, where every possible byte value can be transmitted.
+Because the {\em IDLE} code uses a byte value, an {\em ESCAPE} 
+code is needed. The {\em ESCAPE} code is used as an indicator 
+within the byte-stream that a protocol code is being transmitted as data. 
+The binary data value could simply be transmitted following the
+{\em ESCAPE} code, however, Altera's protocol uses a data value
+that is the logical exclusive or (XOR) of the data value with
+\verb+0x20+ (this data masking technique is also
+used in RFC1662\cite{RFC1662_1994}).
+%
+For example, a JTAG-to-Avalon-ST transaction containing the {\em IDLE}
+code as data will encode the byte as \verb+0x4D 0x6A+,
+while a transaction containing the {\em ESCAPE} code as data will
+encode the byte as \verb+0x4D 0x6D+.
+
+The data headers, and {\em IDLE} and {\em ESCAPE} codes appear in the
+byte-streams on the {\em JTAG side} of the JTAG-to-Avalon-ST bridge.
+The byte-streams on the {\em Avalon-ST side} of the JTAG-to-Avalon-ST bridge
+contain {\em only} the data bytes. Section~\ref{sec:hardware}
+shows simulation and logic analyzer traces of the byte-streams
+on the JTAG-to-Avalon-ST interfaces.
+
+% -----------------------------------------------------------------
+% JTAG-to-Avalon-ST Instruction Register Codes
+% -----------------------------------------------------------------
+%
+\begin{table}[p]
+\caption{JTAG-to-Avalon-ST JTAG 3-bit Virtual Instruction Register (VIR) modes.}
+\label{tab:jtag_to_avalon_st_vir_codes}
+\begin{center}
+\begin{tabular}{|c|l|p{10cm}|}
+\hline
+Code & Mode & Description\\
+\hline\hline
+&&\\
+\verb+0+ & {\em DATA}     & Data byte-stream to and from user logic.\\
+&&\\
+\verb+1+ & {\em LOOPBACK} & Loopback the JTAG serial data (via a 1-bit bypass register).\\
+&&\\
+\verb+2+ & {\em DEBUG}    & 3-bit (read-only) Debug status register:\\
+         &                & [0]: Avalon-ST reset state\\
+         &                & [1]: Avalon-ST clock divided-by-2 state\\
+         &                & [2]: Avalon-ST clock state\\
+&&\\
+\verb+3+ & {\em INFO}     & 11-bit (read-only) Component identification (Verilog parameter values).\\
+         &                & [3:0]: $\floor(\log_2(\text{\tt UPSTREAM\_FIFO\_SIZE}))$\\
+         &                & [7:4]: $\floor(\log_2(\text{\tt DOWNSTREAM\_FIFO\_SIZE}))$\\
+         &                & [10:8]: {\tt PURPOSE} (0 = JTAG Avalon-ST, 1 = Avalon-MM)\\
+&&\\
+\verb+4+ & {\em CONTROL}  & 9-bit (read/write) Offset and reset-request control.\\
+         &                & [7:0]: Offset\\
+         &                & [9]: Reset request\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+% -----------------------------------------------------------------
+% JTAG-to-Avalon-ST DATA Mode Data Headers
+% -----------------------------------------------------------------
+%
+\begin{table}[p]
+\caption{JTAG-to-Avalon-ST DATA mode 16-bit headers.}
+\label{tab:jtag_to_avalon_st_headers}
+\begin{center}
+\begin{tabular}{|l|l|p{9.5cm}|}
+\hline
+Data direction & Bits & Description\\
+\hline\hline
+&&\\
+To device & [9:0]   & Scan length.\\
+          & [12:10] & Read data length.\\
+          & [15:13] & Write data length.\\
+&&\\
+From device & [0] & Read data is available.\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+% -----------------------------------------------------------------
+% JTAG-to-Avalon-ST DATA Mode Data Encoding Codes
+% -----------------------------------------------------------------
+%
+\begin{table}[p]
+\caption{JTAG-to-Avalon-ST DATA mode protocol codes.}
+\label{tab:jtag_to_avalon_st_protocol_codes}
+\begin{center}
+\begin{tabular}{|c|l|p{10.5cm}|}
+\hline
+Code & Name & Description\\
+\hline\hline
+&&\\
+\verb+0x4A+ & {\em IDLE}   & Inserted into the data stream when there is no data to send.\\
+&&\\
+\verb+0x4D+ & {\em ESCAPE} & Inserted into the data stream when the data to send is a protocol
+               code, followed by the data XORed with \verb+0x20+.\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\clearpage
+% -----------------------------------------------------------------
+\subsection{JTAG-to-Avalon-MM}
+% -----------------------------------------------------------------
+\label{sec:jtag_to_avalon_mm}
+
+% -----------------------------------------------------------------
+% JTAG-to-Avalon-MM Bridge
+% -----------------------------------------------------------------
+%
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=\textwidth]{figures/jtag_to_avalon_mm_bridge.pdf}
+  \end{center}
+  \caption{JTAG-to-Avalon-MM Bridge.}
+  \label{fig:jtag_to_avalon_mm_bridge}
+\end{figure}
+% -----------------------------------------------------------------
+
+The JTAG-to-Avalon-MM bridge provides an interface for generating
+Avalon-MM master read or write transactions via JTAG. The bridge
+is implemented via a series of interconnected components and protocols.
+Figure~\ref{fig:jtag_to_avalon_mm_bridge} shows the components within
+the JTAG-to-Avalon-MM bridge, and how the bridge connects to an Avalon-MM system.
+The host generates an Avalon-MM master transaction by first encoding
+a Avalon-MM command into a command byte-stream, and then issuing the
+command to the JTAG-to-Avalon-MM bridge via JTAG.
+The {\em JTAG-to-Avalon-ST bridge} transports the encoded Avalon-ST command 
+byte-stream (crossing from the JTAG clock domain to the Avalon-ST clock
+domain), the {\em bytes-to-packets component} converts the command 
+byte-stream into Avalon-ST command packet (which is a byte-stream 
+with extra Avalon-ST control signals), the {\em packets-to-transactions}
+component converts the Avalon-ST packet into an Avalon-MM
+transaction, issues an Avalon-MM master transaction, and
+encodes the response as an Avalon-ST response packet, the
+{\em packets-to-bytes} component converts the Avalon-ST response packet
+to an encoded Avalon-ST response byte-stream, which is then read
+by the host via the {\em JTAG-to-Avalon-ST bridge}
+(after the byte-stream has crossed from the Avalon-ST clock
+domain to the JTAG clock domain).
+The host decodes the response bytes to determine the completion of
+an Avalon-MM write, or to access the data from an Avalon-MM read.
+
+The Avalon-ST packets-to-transactions packet format for read
+and write transactions is shown in 
+Tables~\ref{tab:jtag_to_avalon_mm_read_packet}
+and Table~\ref{tab:jtag_to_avalon_mm_write_packet}.
+The transaction codes used in those packets are shown
+in Table~\ref{tab:jtag_to_avalon_mm_transaction_codes}.
+The transaction packets are encoded to and from byte-streams
+via the bytes-to-packets/packets-to-bytes protocol
+codes in Table~\ref{tab:jtag_to_avalon_mm_protocol_codes}.
+The bytes-to-packets/packets-to-bytes protocol defines a channel 
+number, start and end of packets, and an escape code. These
+codes are consumed by the bytes-to-packets core and produced
+by the packets-to-bytes core. These cores convert between
+Avalon-ST {\em byte} streams and Avalon-ST {\em packet} streams.
+The packets-to-transactions core converts the Avalon-ST packet
+stream into an Avalon-MM transaction, and generates a response
+Avalon-ST packet stream, which is subsequently encoded as an
+Avalon-ST byte-stream.
+
+
+The JTAG-to-Avalon-MM bridge is typically used for system debug
+and initial board bring-up. The bridge can be used to generate
+Avalon-MM single-read and single-write transactions. The bridge
+can not be used to generate Avalon-MM bursts or to generate back-to-back 
+transactions, however, the bridge could be used to program another
+Avalon-MM master capable of generating bursts and back-to-back
+transactions.
+
+\clearpage
+% -----------------------------------------------------------------
+% Read Transaction
+% -----------------------------------------------------------------
+%
+\begin{table}[p]
+\caption{JTAG-to-Avalon-MM Packets-to-Transaction Read Packet.}
+\label{tab:jtag_to_avalon_mm_read_packet}
+\begin{center}
+\begin{tabular}{|c|l|p{10cm}|}
+\hline
+Byte & Field & Description\\
+\hline\hline
+\multicolumn{3}{|l|}{\bf Command}\\
+\hline
+&&\\
+\verb+0+ & Transaction code  & See Table~\ref{tab:jtag_to_avalon_mm_transaction_codes}\\
+&&\\
+\verb+1+ & Reserved          & Reserved for future use (use \verb+0x00+).\\
+&&\\
+\verb+[3:2]+ & Size          & Transaction size in bytes (16-bit big-endian format).\\
+&&\\
+\verb+[7:4]+ & Address       & Avalon-MM address (32-bit big-endian format).\\
+&&\\
+\hline
+\multicolumn{3}{|l|}{\bf Response}\\
+\hline
+&&\\
+\verb+[3:0]+ & Data          & Avalon-MM data (32-bit little-endian format).\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+% -----------------------------------------------------------------
+% Write Transaction
+% -----------------------------------------------------------------
+%
+\begin{table}[p]
+\caption{JTAG-to-Avalon-MM Packets-to-Transaction Write Packet.}
+\label{tab:jtag_to_avalon_mm_write_packet}
+\begin{center}
+\begin{tabular}{|c|l|p{10cm}|}
+\hline
+Byte & Field & Description\\
+\hline\hline
+\multicolumn{3}{|l|}{\bf Command}\\
+\hline
+&&\\
+\verb+0+ & Transaction code  & See Table~\ref{tab:jtag_to_avalon_mm_transaction_codes}\\
+&&\\
+\verb+1+ & Reserved          & Reserved for future use (use \verb+0x00+).\\
+&&\\
+\verb+[3:2]+ & Size          & Transaction size in bytes (16-bit big-endian format).\\
+&&\\
+\verb+[7:4]+ & Address       & Avalon-MM address (32-bit big-endian format).\\
+&&\\
+\verb+[n:8]+ & Data          & Avalon-MM data (32-bit little-endian format).\\
+&&\\
+\hline
+\multicolumn{3}{|l|}{\bf Response}\\
+\hline
+&&\\
+\verb+0+ & Transaction code  & Transaction code with the MSB inverted.\\
+&&\\
+\verb+1+ & Reserved          & Reserved for future use (use \verb+0x00+).\\
+&&\\
+\verb+[3:2]+ & Size          & Total number of bytes written (16-bit big-endian format).\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\clearpage
+% -----------------------------------------------------------------
+% Packets-to-transactions transaction codes
+% -----------------------------------------------------------------
+%
+\begin{table}[p]
+\caption{JTAG-to-Avalon-MM Packets-to-Transaction Transaction Codes.}
+\label{tab:jtag_to_avalon_mm_transaction_codes}
+\begin{center}
+\begin{tabular}{|c|l|p{9cm}|}
+\hline
+Code & Avalon-MM Transaction & Description\\
+\hline\hline
+\multicolumn{3}{|l|}{\bf Transaction}\\
+\hline
+&&\\
+\verb+0x00+ & Write, non-incrementing  & Write transaction(s) to a fixed address.\\
+&&\\
+\verb+0x04+ & Write, incrementing      & Write transaction(s) starting at the given address.\\
+&&\\
+\verb+0x10+ & Read, non-incrementing   & Read transaction(s) to a fixed address.\\
+&&\\
+\verb+0x14+ & Read, incrementing       & Read transaction(s) starting at the given address.\\
+&&\\
+\verb+0x7F+ & No transaction           & No transaction is generated on the Avalon-MM interface. Used for testing the packets interface.\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+% -----------------------------------------------------------------
+% Bytes-to-packets protocol codes
+% -----------------------------------------------------------------
+%
+\begin{table}[p]
+\caption{JTAG-to-Avalon-MM Bytes-to-Packets/Packets-to-Bytes Protocol Codes.}
+\label{tab:jtag_to_avalon_mm_protocol_codes}
+\begin{center}
+\begin{tabular}{|c|l|p{10cm}|}
+\hline
+Code & Name & Description\\
+\hline\hline
+&&\\
+\verb+0x7A+ & {\em SOP}     & Start of packet.\\
+&&\\
+\verb+0x7B+ & {\em EOP}     & End of packet.\\
+&&\\
+\verb+0x7C+ & {\em CHANNEL} & Channel number.\\
+&&\\
+\verb+0x7D+ & {\em ESCAPE}  & Inserted into the data stream when the
+                              data to send is a protocol code, followed
+                              by the data XORed with \verb+0x20+.\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\clearpage
+% -----------------------------------------------------------------
+\subsection{Altera Documentation}
+% -----------------------------------------------------------------
+
+The JTAG-to-Avalon-ST, bytes-to-packets, packets-to-bytes, and
+JTAG-to-Avalon-MM components are (partially) documented in the 
+Embedded IP Users Guide~\cite{Altera_Embedded_IP_2011};
+%
+\begin{itemize}
+\item {\em Chapter 11: Avalon-ST Serial Periperal Interface Core}
+has the documentation for an SPI controller. This is not used in the
+JTAG-to-Avalon-MM design, but it is the only place in the IP guide that
+the special character codes for the JTAG interface are discussed.
+Page 11-2 has the special codes, i.e., \verb+0x4A+ ({\em IDLE}),
+and \verb+0x4D+ ({\em ESCAPE}), and that the escape mask (XOR) code 
+is \verb+0x20+.
+\item {\em Chapter 18: SPI Slave/JTAG to Avalon Master Bridge Cores} 
+describes the JTAG-to-Avalon-MM master component. Figure 18-3 contains an example of
+a transaction byte stream, however, the channel code and start-of-packet are
+reversed from what is observed in hardware (via SignalTap II traces).
+There is no description of the figure in this chapter (hence the origin
+of the \verb+0x4D+ escape code is not obvious).
+\item {\em Chapter 20: Avalon-ST Bytes to Packets and Packets to Bytes Converter Cores}
+describes the byte stream to transaction command packets components.
+Page 28-2 describes the special codes used by the packets cores,
+i.e., \verb+0x7A+ (start-of-packet, {\em SOP}), \verb+0x7B+ (end-of-packet,
+{\em EOP}), \verb+0x7C+ ({\em CHANNEL}), \verb+0x7D+ ({\em ESCAPE}),
+and that the escape mask (XOR) code is \verb+0x20+. Figure 20-3 has an example
+of a transaction byte stream, and this time the channel code and start-of-packet
+are in the order observed in hardware.
+\item {\em Chapter 21: Avalon Packets to Transactions Converter Core}
+describes the logic that generates an Avalon-MM transaction based on
+a command packet, and then sends a response packet back via the byte stream.
+Table 21-2 and 21-3 have the details required to form transaction packets
+for Avalon-MM read and write operations.
+Table 21-2 has the response packet format for write, but there is no documentation
+for the read response packet (it was determined using SignalTap II
+and the simulation testbench).
+\item {\em Chapter 32: Avalon-ST JTAG Interface Core} describes the JTAG to
+byte stream component. There are no comments regarding the protocol 
+codes used for idle and escape, or the escape XOR mask.
+This information used to be in this chapter; in the July 2010 version
+of the guide, this component was described in Chapter 31, and there
+was a table with the special character codes, and a description of how
+the codes are used, along with the XOR mask for escaped data.
+\end{itemize}
+
+\clearpage
+% =================================================================
+\section{Software}
+% =================================================================
+\label{sec:software}
+
+Altera provides two software interfaces for accessing JTAG
+devices; SystemConsole and \verb+quartus_stp+. Altera provides
+procedures for accessing the JTAG-to-Avalon components
+using SystemConsole, but does not provide procedures for
+use with \verb+quartus_stp+.
+The code associated with this document contains a Tcl package
+that provides \verb+quartus_stp+ support procedures for
+accessing JTAG-to-Avalon components.
+
+% -----------------------------------------------------------------
+\subsection{SystemConsole}
+% -----------------------------------------------------------------
+\label{sec:systemconsole}
+
+The {\em SystemConsole} services and procedures for accessing
+JTAG components are documented in the {\em Quartus II Handbook, 
+Volume 3: Verification, Chapter 10: Analyzing and Debugging 
+Designs with the System Console}~\cite{Altera_Quartus_Handbook_2011}.
+The services of interest are;
+%
+\begin{itemize}
+\item \verb+sld+: provides low-level access to the Virtual JTAG
+instruction and data registers.
+%
+\item \verb+jtag_debug+: provides procedures to access to the status and
+control registers in the JTAG-to-Avalon-ST bridge.
+%
+\item \verb+bytestream+: provides procedures to send and
+receive byte-streams via the data mode of the JTAG-to-Avalon-ST bridge.
+%
+\item \verb+master+: provides procedures to generate Avalon-MM
+read and write transactions using the JTAG-to-Avalon-MM bridge.
+%
+\end{itemize}
+%
+Using the protocols provided in Section~\ref{sec:protocol}, the
+\verb+master+ service procedures can be re-implemented using the
+\verb+bytestream+ service procedures, and all service procedures
+can be implemented using the \verb+sld+ service procedures.
+
+% -----------------------------------------------------------------
+\subsection{Command-line tools ({\tt quartus\_stp})}
+% -----------------------------------------------------------------
+\label{sec:quartus_stp}
+
+The \verb+quartus_stp+ procedures for accessing JTAG components
+are documented in the {\em Virtual JTAG Megafunction User 
+Guide}~\cite{Altera_Virtual_JTAG_2008}.
+The procedures of interest are;
+%
+\begin{itemize}
+\item \verb+device_ir_shift+ and \verb+device_dr_shift+: provide
+low-level access to the JTAG instruction and data registers.
+%
+\item \verb+device_virtual_ir_shift+ and \verb+device_virtual_dr_shift+: provide
+low-level access to the Virtual JTAG instruction and data registers.
+\end{itemize}
+%
+The Virtual JTAG functions in \verb+quartus_stp+ are essentially
+identical to those implemented by the \verb+sld+ service
+(with the procedure names changed). The \verb+quartus_stp+ Virtual
+JTAG procedures can be implemented using the low-level
+JTAG procedures. Understanding the implementation of the
+JTAG-to-Avalon-MM protocol via the low-level JTAG commands
+allows the development of custom software to access Avalon-MM
+components via JTAG.
+
+\clearpage
+% =================================================================
+\section{Hardware Tests}
+% =================================================================
+\label{sec:hardware}
+
+The source code to the JTAG-to-Avalon-ST and JTAG-to-Avalon-MM
+components is provided as part of the Quartus II software
+installation as shown in Figure~\ref{fig:quartus_jtag_source}.
+%
+Host software accesses the JTAG-to-Avalon-ST byte-streams and
+generates JTAG-to-Avalon-MM transactions via Tcl procedures
+provided by the {\em SystemConsole} user interface. The source
+code for the SystemConsole procedures is not provided
+in the Quartus II software installation.
+
+The hardware tests in this section determine how SystemConsole
+utilizes the JTAG-to-Avalon protocols. 
+Each test instantiates a JTAG-to-Avalon component and a SignalTap
+II logic analyzer instance, issues a SystemConsole command to
+the hardware, and captures a logic analyzer trace of the JTAG
+transaction.
+The logic analyzer traces are compared to the protocols in
+Section~\ref{sec:protocol} to determine the {\em software 
+implementation} of the protocols.
+The JTAG transactions are then reproduced in simulation.
+The result of this analysis is that the JTAG-to-Avalon-MM bridge
+can be used in simulation to generate Avalon-MM transactions
+(Altera do not officially provide such support).
+
+The JTAG-to-Avalon-ST and JTAG-to-Avalon-MM components are typically
+instantiated in Qsys~\cite{Altera_Qsys_Documentation} or in SOPC 
+Builder\cite{Altera_SOPC_Builder_Documentation}.
+%
+The hardware designs in this section instantiate the
+JTAG components directly. Refer to the simulation and synthesis
+scripts for details.
+
+The hardware tests were performed using an Arrow BeMicro-SDK
+USB stick. The USB stick contains a USB-Blaster interface and
+a Cyclone IV FPGA. The hardware tests make minimal use of the
+board I/O, using only the clock, reset, 8 LEDs, and 2 DIP switches.
+The hardware tests can be ported to other development boards.
+
+% -----------------------------------------------------------------
+% Quartus JTAG Source
+% -----------------------------------------------------------------
+%
+\begin{figure}[p]
+\begin{minipage}{\textwidth}
+\begin{itemize}
+\item \verb+QUARTUS_ROOTDIR+
+
+Environment variable created by the Quartus II installer.
+%
+\item \verb+$QUARTUS_ROOTDIR/eda/sim_lib/altera_mf.v+
+
+Altera Megafunction Verilog file containing the \verb+sld_virtual_jtag+ source.
+%
+\item \verb+$QUARTUS_ROOTDIR/eda/sim_lib/altera_mf.vhd+ 
+
+Altera Megafunction VHDL file containing the \verb+sld_virtual_jtag+ source.
+%
+\item \verb+$QUARTUS_ROOTDIR/eda/sim_lib/altera_mf_components.vhd+ 
+
+Altera Megafunction VHDL file containing the \verb+sld_virtual_jtag+ and\\ \verb+sld_virtual_jtag_basic+ component definitions.
+%
+\item \verb+QUARTUS_SOPC_IP = $QUARTUS_ROOTDIR/../ip/altera/sopc_builder_ip+
+
+Quartus SOPC Builder IP directory.
+%
+\item \verb+$QUARTUS_SOPC_IP/altera_avalon_jtag_phy/altera_jtag_sld_node.v+ 
+
+The JTAG node. 
+
+For {\em synthesis} this component instantiates
+an \verb+sld_virtual_jtag_basic+ component, which is
+an \verb+sld_virtual_jtag+ component with additional parameters to set the
+manufacturer ID (110 = 0x6E), type ID (132 = 0x84), and version (1). 
+There is no source for the Verilog or VHDL component, just a VHDL 
+component definition.
+
+For {\em simulation} this component provide a series of Verilog tasks
+that are used to generate JTAG transactions.
+%
+\item \verb+$QUARTUS_SOPC_IP/altera_avalon_jtag_phy/altera_jtag_streaming.v+ 
+
+JTAG-to-Avalon-ST protocol component, including the 3-bit JTAG instruction
+register (IR) values (see Table~\ref{tab:jtag_to_avalon_st_ir_codes}),
+ and byte stream header and data format details
+(not exactly easy reading, but enough detail to write simulation stimulus
+to aid in understanding). 
+%
+\item \verb+$QUARTUS_SOPC_IP/altera_avalon_jtag_phy/altera_avalon_st_jtag_interface.v+ 
+
+JTAG-to-Avalon-ST component; instantiates the JTAG node and streaming components.
+%
+\item \verb+$QUARTUS_SOPC_IP/altera_avalon_st_bytes_to_packets/+ 
+
+\verb+$QUARTUS_SOPC_IP/altera_avalon_st_packets_to_bytes/+ 
+
+Avalon-ST bytes-to-packets and packets-to-bytes components which
+implement the byte encoding and decoding protocol in
+Table~\ref{tab:jtag_to_avalon_mm_protocol_codes}.
+
+\item \verb+$QUARTUS_SOPC_IP/altera_avalon_packets_to_master/altera_avalon_packets_to_master.v+ 
+
+Avalon-ST packets to Avalon-MM master transactions component, which
+implements the transaction codes in 
+Table~\ref{tab:jtag_to_avalon_mm_transaction_codes}, the 
+write packet protocol in Table~\ref{tab:jtag_to_avalon_mm_write_packet}, and the
+read packet protocol in Table~\ref{tab:jtag_to_avalon_mm_read_packet}.
+%
+\item \verb+$QUARTUS_SOPC_IP/altera_jtag_avalon_master/altera_jtag_avalon_master.v+ 
+
+JTAG-to-Avalon-MM component; instantiates the JTAG node, streaming, bytes-to-packets,
+packets-to-bytes, and packets-to-transactions components.
+%
+\end{itemize}
+\end{minipage}
+\caption{Quartus II JTAG-to-Avalon source.}
+\label{fig:quartus_jtag_source}
+\end{figure}
+
+\clearpage
+% -----------------------------------------------------------------
+\subsection{JTAG Node}
+% -----------------------------------------------------------------
+
+% -----------------------------------------------------------------
+% JTAG node project source
+% -----------------------------------------------------------------
+%
+\begin{table}[t]
+\caption{JTAG node ({\tt jtag\_node}) project source.}
+\label{tab:jtag_node_source}
+\begin{center}
+\begin{tabular}{|l|l|p{7cm}|}
+\hline
+Folder & File & Description\\
+\hline\hline
+&&\\
+\verb+scripts+ & \verb+synth.tc+         & Quartus II synthesis script\\
+               & \verb+bemicro_sdk.stp+  & SignalTap II setup\\
+               & \verb+bemicro_sdk.sdc+  & Timing constraints\\
+               & \verb+sim.tc+           & Modelsim simulation script\\
+               & \verb+jtag_node_tb.do+  & Modelsim wave window setup\\
+               & \verb+jtag_cmds_sc.tcl+ & SystemConsole commands\\
+&&\\
+\verb+src+     & \verb+bemicro_sdk.sv+ & Top-level synthesis source\\
+&&\\
+\verb+test+    & \verb+jtag_node_tb.sv+ & Simulation testbench\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+% -----------------------------------------------------------------
+
+% -----------------------------------------------------------------
+% JTAG node address map
+% -----------------------------------------------------------------
+%
+\begin{table}[t]
+\caption{JTAG node ({\tt jtag\_node}) project Virtual Instruction Register (VIR) decode.}
+\label{tab:jtag_node_registers}
+\begin{center}
+\begin{tabular}{|c|c|p{7cm}|}
+\hline
+VIR[2:0] & Access & Description\\
+\hline\hline
+&&\\
+0   & Write-only & Write to the 8-bit data register\\
+1   & Read-only  & Read from the 8-bit data register\\
+2   & Read-only  & Read the state of the 2 DIP switches\\
+3-7 & Read-only  & Unused. Reads return zero\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+% -----------------------------------------------------------------
+
+The JTAG node source, \verb+altera_jtag_sld_node.v+ (see 
+Figure~\ref{fig:quartus_jtag_source} for the source location),
+provides the basic JTAG-to-FPGA interface logic. The component
+selects between the Virtual JTAG component for {\em synthesis}
+and a set of Verilog tasks for {\em simulation}. 
+The hardware tests on the JTAG node determine the JTAG transaction
+sequences. These sequences are reproduced (as closely as possible)
+via the JTAG node simulation tasks. The JTAG node simulation model
+is then used to develop the JTAG-to-Avalon-ST and JTAG-to-Avalon-MM
+simulation models.
+
+The JTAG node project source layout is shown in Table~\ref{tab:jtag_node_source}.
+Appendix~\ref{app:build} contains build instructions.
+The top-level synthesis source contains the JTAG node, an 8-bit JTAG
+data shift-register, and the registers shown in
+Table~\ref{tab:jtag_node_registers}. Write and read access to the 8-bit
+data register uses two different VIR codes, due to the fact that JTAG
+transactions are {\em simultaneously} both write (host-to-device data)
+and read (device-to-host data) transactions; when VIR = 0, the
+device transmits zero over JTAG (and the host ignores it),
+and when VIR = 1, the host transmits zero over JTAG (and the
+device ignores it). This simple design is representative of how
+all Virtual JTAG designs use the Virtual Instruction Register for
+decoding different Virtual Data Register data paths.
+
+\newpage
+The JTAG node design uses the LEDs for user feedback as follows;
+%
+\begin{center}
+\begin{tabular}{ll}
+LED[3:0] & Connects to the 4-LSBs of the 8-bit data register\\
+LED[6:4] & The 3-bit VIR value\\
+LED[7]   & Blinks at about 1Hz to show the design is running\\
+\end{tabular}
+\end{center}
+%
+The Tcl procedure \verb+jtag_sld_vir_count+ generates an incrementing
+count on the 3 VIR LEDs (and reads the 2-bit switch state via VIR out),
+while the procedure \verb+jtag_sld_data_count+
+generates a count on the 4 data LEDs (and reads the 8-bit register
+back and reads the 2-bit switch state). The value written to the
+LED and the values read back are printed to the console. The LED 
+count increments at about once per second, so the DIP switches can
+be changed and the value printed to the console seen to change.
+
+Figures~\ref{fig:jtag_node_vir} and~\ref{fig:jtag_node_vdr}
+show SignalTap II logic analyzer traces from the two basic Virtual
+JTAG transactions; a Virtual shift-IR sequence and a Virtual
+shift-DR sequence. The figures show the JTAG one-hot states
+as well as the Virtual JTAG one-hot states. The Virtual sequences
+are constructed from a JTAG shift-IR sequence to load the
+\verb+USER1+ or \verb+USER0+ JTAG instruction codes, and then
+a JTAG shift-DR sequence to access the Virtual IR or Virtual DR
+path. The Virtual IR sequence in Figure~\ref{fig:jtag_node_vir} 
+was generated by the Tcl command \verb+jtag_sld_data_read+,
+which sets IR = 1 (per Table~\ref{tab:jtag_node_registers}),
+while the Virtual DR sequence in  Figure~\ref{fig:jtag_node_vdr} 
+was generated by the Tcl command \verb+jtag_sld_data_write 0x55+,
+which sets IR = 0 (per Table~\ref{tab:jtag_node_registers})
+prior to the trace capture, and then serially shifts in the
+8-bit data value \verb+0x55+ (overwriting the previous register value
+of \verb+0xAA+).
+For more detail on the Virtual JTAG interface 
+see~\cite{Hawkins_VJTAG_2011} (that document explains the
+encoding of the 10-bit VIR code in Figure~\ref{fig:jtag_node_vir}).
+
+
+The JTAG node source, \verb+altera_jtag_sld_node.v+ provides a
+minimal set of Verilog tasks for simulation. The project
+testbench, \verb+jtag_node_tb.sv+, contains test sequences
+showing how to use the JTAG node Verilog tasks to update the
+Virtual Instruction Register to generate the VIR codes shown
+in Table~\ref{tab:jtag_to_avalon_st_vir_codes}, and how to
+generate Virtual shift-DR sequences for a single-byte and
+for multiple-bytes. The simulation {\em does not} generate
+waveforms identical to the hardware tests (due to the limitations
+of the Verilog tasks), but the functionality is sufficient to
+simulate designs containing the JTAG node.
+
+% -----------------------------------------------------------------
+% SignalTap II logic analyzer traces
+% -----------------------------------------------------------------
+%
+% The traces were created using;
+% * Shift-Ctrl-PrintScreen
+% * Crop using Corel PhotoPaint
+% * Convert to bmp and back to png using png2bmp and bmp2png.
+%   If you do not do this, you get an exception from PCTex.
+% * Paste into Inkscape without scaling the bitmap.
+% * Add overlay text.
+%
+% The notes in my vjtag.tex document, show how to crop using
+% MATLAB.
+%
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_node_vir.pdf}
+  \caption{JTAG node Virtual Instruction Register SignalTap II logic
+  analyzer trace. The sequence consists of the JTAG {\tt USER1} 
+  IR-shift sequence followed by a JTAG DR-shift sequence.
+  The JTAG shift-DR sequence corresponds to the Virtual JTAG 
+  shift-IR sequence. In this example, the sequence sets the
+  Virtual Instruction to {\tt ir\_in[2:0] = 1}.}
+  \label{fig:jtag_node_vir}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_node_vdr.pdf}
+  \caption{JTAG node Virtual Data Register SignalTap II logic
+  analyzer trace. The sequence consists of the JTAG {\tt USER0} 
+  IR-shift sequence followed by a JTAG DR-shift sequence.
+  The JTAG shift-DR sequence corresponds to the Virtual JTAG 
+  shift-DR sequence. In this example, the sequence sets
+  the 8-bit data register to {\tt data[7:0] = 0x55}.}
+  \label{fig:jtag_node_vdr}
+\end{figure}
+\end{landscape}
+
+
+\clearpage
+% -----------------------------------------------------------------
+\subsection{JTAG-to-Avalon-ST}
+% -----------------------------------------------------------------
+% -----------------------------------------------------------------
+% JTAG-to-Avalon-ST project source
+% -----------------------------------------------------------------
+%
+\begin{table}[t]
+\caption{JTAG-to-Avalon-ST ({\tt jtag\_to\_avalon\_st}) project source.}
+\label{tab:jtag_to_avalon_st_source}
+\begin{center}
+\begin{tabular}{|l|l|p{6cm}|}
+\hline
+Folder & File & Description\\
+\hline\hline
+&&\\
+\verb+scripts+ & \verb+synth.tc+         & Quartus II synthesis script\\
+               & \verb+bemicro_sdk.stp+  & SignalTap II setup\\
+               & \verb+bemicro_sdk.sdc+  & Timing constraints\\
+               & \verb+sim.tc+           & Modelsim simulation script\\
+               & \verb+jtag_to_avalon_st_tb.do+  & Modelsim wave window setup\\
+               & \verb+jtag_cmds_sc.tcl+ & SystemConsole commands\\
+&&\\
+\verb+src+     & \verb+bemicro_sdk.sv+ & Top-level synthesis source\\
+&&\\
+\verb+test+    & \verb+jtag_to_avalon_st_tb.sv+ & Simulation testbench\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+% -----------------------------------------------------------------
+
+The JTAG-to-Avalon-ST source, \verb+altera_avalon_st_jtag_interface.v+ (see 
+Figure~\ref{fig:quartus_jtag_source} for the source location),
+provides an interface for the host to stream bytes into and out of
+the FPGA fabric, and to access control and status registers.
+The JTAG-to-Avalon-ST protocol is described in 
+Section~\ref{sec:jtag_to_avalon_st}, and the SystemConsole procedures
+that implement the protocol are referenced in 
+Section~\ref{sec:systemconsole}.
+
+The JTAG-to-Avalon-ST project source layout is shown in 
+Table~\ref{tab:jtag_to_avalon_st_source}.
+Appendix~\ref{app:build} contains build instructions.
+The top-level synthesis source contains the JTAG-to-Avalon-ST bridge,
+an 8-bit data register (which is loaded each time valid data is received
+on the host-to-device Avalon-ST byte-stream), a write data counter
+(to track writes to the data register), and
+a synthesis parameter to control whether the Avalon-ST interface
+is looped-back (allowing the host to read-back the data it writes)
+or whether host-to-device data is just dropped (and no device-to-host
+data is ever generated).
+The JTAG-to-Avalon-ST design uses the LEDs for user feedback as follows;
+%
+\begin{center}
+\begin{tabular}{ll}
+LED[5:0] & Connects to the 6-LSBs of the 8-bit data register\\
+LED[6]   & The Avalon-ST \verb+resetrequest+ output\\
+LED[7]   & Blinks at about 1Hz to show the design is running\\
+\end{tabular}
+\end{center}
+%
+The SystemConsole Tcl procedures in \verb+jtag_cmds_sc.tcl+ allow
+the data register (and LEDs) to be written and read, allow the
+transmission of strings and blocks of binary data over the byte-stream
+interface, control of the \verb+resetrequest+ output, and
+implementation of some of the \verb+bytestream+ service commands
+via the low-level \verb+sld+ service commands. See the Tcl
+script for details.
+
+The JTAG-to-Avalon-ST source file, \verb+altera_jtag_streaming.v+,
+requires the following modifications to enable SignalTap II
+probing (to disable logic elimination and net renaming);
+%
+\begin{verbatim}
+     wire write_data_byte_aligned          /* synthesis keep */;
+     reg [15:0] header_in  = 'b0           /* synthesis noprune */;
+     wire [7:0] idle_inserter_source_data  /* synthesis keep */;
+     wire [7:0] idle_inserter_source_data;
+     wire data_available                   /* synthesis keep */;
+\end{verbatim}
+%
+
+Figure~\ref{fig:jtag_to_avalon_st_hello} shows a SignalTap II logic
+analyzer trace of the transmission of the string ``hello''. The
+string was transmitted by the \verb+jtag_bytestream_string+
+procedure in the script \verb+jtag_cmds_sc.tcl+. The
+procedure is implemented using the SystemConsole \verb+bytestream+
+service, \verb+bytestream_send+ command. The trace, and
+others like it, show how the \verb+bytestream+ service utilizes
+the JTAG-to-Avalon-ST protocol.
+
+
+Figure~\ref{fig:jtag_to_avalon_st_HIJKLMN} shows a SignalTap II logic
+analyzer trace of the transmission of the string ``HIJKLMN''.
+This string is special in that it contains the {\em IDLE}
+(\verb+0x4A+) and {\em ESCAPE} (\verb+0x4D+) codes
+as data. The logic analyzer trace shows how the data is encoded
+over the JTAG byte-stream and that the data on the Avalon-ST
+interface matches the bytes in the transmitted string.
+
+Figures~\ref{fig:jtag_to_avalon_st_sop},
+~\ref{fig:jtag_to_avalon_st_idle}, ~\ref{fig:jtag_to_avalon_st_eop}, 
+and~\ref{fig:jtag_to_avalon_st_sld_eop}, show a 1kB transfer of
+binary data over the JTAG-to-Avalon-ST interface.
+The binary data consists of a start-of-packet (SOP) code ({\tt 0x11}),
+alternating data bytes {\tt 0x55} and {\tt 0xAA}, and an
+end-of-packet (EOP) code ({\tt 0x22}). The format of the binary data
+was chosen to provide unique SOP and EOP codes to trigger 
+SignalTap II, and avoided using any of the JTAG-to-Avalon-ST 
+protocol codes (a data payload of an incrementing count
+would have to avoid the protocol codes).
+The figures show a subtle implementation detail of the
+SystemConsole \verb+bytestream+ service, \verb+bytestream_send+
+procedure; for each 1024-byte transfer only 1022-bytes of data
+are transmitted, with the final two bytes replaced with the
+{\em IDLE} code (see Figure~\ref{fig:jtag_to_avalon_st_idle}).
+The final two bytes of data are then transmitted
+in a subsequent data packet (see Figure~\ref{fig:jtag_to_avalon_st_eop}).
+Figure~\ref{fig:jtag_to_avalon_st_sld_eop} shows that the 1kB of
+data could have been transferred in a single 1kB transaction.
+
+The JTAG-to-Avalon-ST SystemConsole \verb+bytestream+ procedures
+were tested using the binary data for various lengths,
+yielding the following observations;
+%
+\begin{itemize}
+\item The JTAG-to-Avalon-ST header is always \verb+0xFC03+ which
+indicates that the scan length, write length, and read length
+are all 1024-bytes (0x400).
+%
+\item The 1024-byte length header is used for all transfers,
+including transfers of greater than 1024-bytes; the SystemConsole
+procedure divides the transfer into multiple 1024-byte transactions.
+%
+\end{itemize}
+%
+The JTAG-to-Avalon-ST protocol was implemented using the 
+SystemConsole \verb+sld+ service for an arbitrary length
+binary data stream. The JTAG-to-Avalon-ST header was calculated
+as the next 256-byte increment over the binary data length,
+with {\em IDLE} codes used as padding. Signal Tap II traces
+of various lengths confirmed the operation of the procedures.
+
+The \verb+sld+ based procedures also provided a mechanism to
+exercise the data available field of the JTAG-to-Avalon-ST
+read data header in Table~\ref{tab:jtag_to_avalon_st_headers}.
+The data available signal, \verb+data_available+, can be
+seen asserted at the end of the transaction in
+Figure~\ref{fig:jtag_to_avalon_st_sld_eop}. The 16-bit
+read data header following this transaction had the 
+read data available bit set.
+
+The project simulation testbench, \verb+jtag_to_avalon_st_tb.sv+,
+uses the Verilog tasks in the JTAG SLD node to access the
+JTAG-to-Avalon-ST bridge control and status registers,
+and to generate data byte-stream transactions. The testbench
+contains stimulus sequences that test different JTAG-to-Avalon-ST
+headers, eg., read-only and write-only operations (modes that
+are not exercised by any of the Altera procedures), and
+stimulus that investigates what happens to the bridge interface
+logic when the JTAG interface does not send the amount of data
+indicated by the header, i.e., short transactions.
+
+% -----------------------------------------------------------------
+% SignalTap II logic analyzer traces
+% -----------------------------------------------------------------
+%
+% The traces were created using;
+% * Shift-Ctrl-PrintScreen
+% * Crop using Corel PhotoPaint
+% * Convert to bmp and back to png using png2bmp and bmp2png.
+%   If you do not do this, you get an exception from PCTex.
+% * Paste into Inkscape without scaling the bitmap.
+% * Add overlay text.
+%
+% The notes in my vjtag.tex document, show how to crop using
+% MATLAB.
+%
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_st_hello.pdf}
+  \caption{JTAG-to-Avalon-ST loopback of the string ``hello''.
+  The 16-bit header indicates that the SystemConsole
+  {\tt bytestream\_send} command generates a 1kB packet.
+  The packet data consists of the characters in the string
+  ``hello'', followed by the {\em IDLE} code ({\tt 0x4A}).}
+  \label{fig:jtag_to_avalon_st_hello}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_st_HIJKLMN.pdf}
+  \caption{JTAG-to-Avalon-ST loopback of the string ``HIJKLMN''.
+  This string is special in that it contains the {\em IDLE}
+  and {\em ESCAPE} character codes as {\em data}.
+  The logic analyzer trace shows how the data is encoded
+  in the JTAG byte-stream as an {\em ESCAPE} code followed
+  by the byte XORed with {\tt 0x20}.}
+  \label{fig:jtag_to_avalon_st_HIJKLMN}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_st_1kB_sop.pdf}
+  \caption{JTAG-to-Avalon-ST transfer of a 1kB of binary data;
+  logic analyzer trace at the start-of-packet.}
+  \label{fig:jtag_to_avalon_st_sop}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_st_1kB_idle.pdf}
+  \caption{JTAG-to-Avalon-ST transfer of a 1kB of binary data;
+  logic analyzer trace at the end of the 1kB scan length.
+  The SystemConsole {\tt bytestream\_send} procedure inserts two
+  {\em IDLE} codes at the end of the packet, and sends the
+  last two bytes in another transfer.}
+  \label{fig:jtag_to_avalon_st_idle}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_st_1kB_eop.pdf}
+  \caption{JTAG-to-Avalon-ST transfer of a 1kB of binary data;
+  logic analyzer trace at the end-of-packet.
+  The SystemConsole {\tt bytestream\_send} procedure inserts two
+  {\em IDLE} codes at the end of the packet, and sends the
+  last two bytes in another transfer.}
+  \label{fig:jtag_to_avalon_st_eop}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_st_1kB_sld_eop.pdf}
+  \caption{JTAG-to-Avalon-ST transfer of a 1kB of binary data;
+  logic analyzer trace at the end-of-packet.
+  The SystemConsole {\tt bytestream\_send} procedure was
+  implemented using the low-level {\tt sld} service procedures
+  to show that the full 1kB data transfer can be performed
+  using a single 1kB transfer. Note that the {\tt data\_available}
+  signal remains asserted at the end of the transaction, as
+  Avalon-ST loopback data is ready to be read by the host.}
+  \label{fig:jtag_to_avalon_st_sld_eop}
+\end{figure}
+\end{landscape}
+
+
+\clearpage
+% -----------------------------------------------------------------
+\subsection{JTAG-to-Avalon-MM}
+% -----------------------------------------------------------------
+% -----------------------------------------------------------------
+% JTAG-to-Avalon-MM project source
+% -----------------------------------------------------------------
+%
+\begin{table}[t]
+\caption{JTAG-to-Avalon-MM ({\tt jtag\_to\_avalon\_mm}) project source.}
+\label{tab:jtag_to_avalon_mm_source}
+\begin{center}
+\begin{tabular}{|l|l|p{6cm}|}
+\hline
+Folder & File & Description\\
+\hline\hline
+&&\\
+\verb+scripts+ & \verb+synth.tc+         & Quartus II synthesis script\\
+               & \verb+bemicro_sdk.stp+  & SignalTap II setup\\
+               & \verb+bemicro_sdk.sdc+  & Timing constraints\\
+               & \verb+sim.tc+           & Modelsim simulation script\\
+               & \verb+jtag_to_avalon_mm_tb.do+  & Modelsim wave window setup\\
+               & \verb+jtag_cmds_sc.tcl+ & SystemConsole commands\\
+&&\\
+\verb+src+     & \verb+bemicro_sdk.sv+   & Top-level synthesis source\\
+&&\\
+\verb+test+    & \verb+jtag_to_avalon_mm_tb.sv+ & Simulation testbench\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+% -----------------------------------------------------------------
+
+The JTAG-to-Avalon-MM source, \verb+altera_jtag_avalon_master.v+ (see 
+Figure~\ref{fig:quartus_jtag_source} for the source location),
+provides an interface for the host to generate Avalon-MM master
+transactions (and to access control and status registers of the
+underlying JTAG-to-Avalon-ST component).
+The JTAG-to-Avalon-MM protocol is described in 
+Section~\ref{sec:jtag_to_avalon_mm}, and the SystemConsole procedures
+that implement the protocol are referenced in 
+Section~\ref{sec:systemconsole}.
+
+The JTAG-to-Avalon-MM project source layout is shown in 
+Table~\ref{tab:jtag_to_avalon_mm_source}.
+Appendix~\ref{app:build} contains build instructions.
+The top-level synthesis source contains the JTAG-to-Avalon-MM bridge,
+and a 32-bit data register located at 32-bit aligned address
+\verb+0x11223344+. The register address makes it easier to see
+the big-endian ordering of the address bytes in the JTAG-to-Avalon-ST
+byte-streams.
+The JTAG-to-Avalon-MM design uses the LEDs for user feedback as follows;
+%
+\begin{center}
+\begin{tabular}{ll}
+LED[5:0] & Connects to the 6-LSBs of the 32-bit data register\\
+LED[6]   & The Avalon-ST \verb+resetrequest+ output\\
+LED[7]   & Blinks at about 1Hz to show the design is running\\
+\end{tabular}
+\end{center}
+%
+The SystemConsole Tcl procedures in \verb+jtag_cmds_sc.tcl+ allow
+the data register (and LEDs) to be written and read, control of 
+the \verb+resetrequest+ output, and implementation of some of 
+the \verb+master+ service commands via the \verb+bytestream+
+service commands. See the Tcl script for details.
+
+The SystemConsole \verb+master+ service provides the
+Tcl procedures shown in Table~\ref{tab:systemconsole_master_procedures}
+(Quartus II Handbook, Volume 3, Chapter 10~\cite{Altera_Quartus_Handbook_2011}).
+The following tests were performed to investigate the JTAG transactions
+generated by the \verb+master+ service procedures;
+%
+\begin{itemize}
+\item 32-bit write access via \verb+master_write_32+.
+
+Figures~\ref{fig:jtag_to_avalon_mm_write_start} 
+and~\ref{fig:jtag_to_avalon_mm_write_end} show a SignalTap II logic
+analyzer trace of a 32-bit write transaction for 
+(address, data) = (\verb+0x11223344+, \verb+0x55667788+).
+The figures are annotated to show the encoded transaction bytes.
+
+\item 32-bit read access via \verb+master_read_32+.
+
+Figures~\ref{fig:jtag_to_avalon_mm_read_start} 
+and~\ref{fig:jtag_to_avalon_mm_read_end} show a logic
+analyzer trace of a 32-bit read transaction for 
+(address, data) = (\verb+0x11223344+, \verb+0x55667788+).
+The figures are annotated to show the encoded transaction bytes.
+
+\item 32-bit write/read access via \verb+master_write/read_memory+.
+
+Figures~\ref{fig:jtag_to_avalon_mm_write_memory} 
+and~\ref{fig:jtag_to_avalon_mm_read_memory} show a logic
+analyzer trace of multiple 32-bit write and read transactions.
+The figures are annotated to show the encoded transaction bytes.
+The key difference between \verb+master_write/read_memory+
+and \verb+master_write/read_32+ procedures is that the JTAG-to-Avalon-ST
+encoded byte-streams are used more efficiently for the
+\verb+master_write/read_memory+ procedures.
+
+\item Protocol codes as data.
+
+Figure~\ref{fig:jtag_to_avalon_mm_write_0x7D7C7B7A} shows a logic
+analyzer trace of a 32-bit write for 
+(address, data) = (\verb+0x11223344+, \verb+0x7D7C7B7A+),
+i.e., the write data contains the bytes-to-packets
+protocol codes {\em as data}. The logic analyzer trace shows
+the {\em ESCAPE} bytes and XORed data in the JTAG and
+Avalon-ST byte-streams.
+%
+Figure~\ref{fig:jtag_to_avalon_mm_write_0x4D4A} shows a logic
+analyzer trace of a 16-bit write for 
+(address, data) = (\verb+0x11223344+, \verb+0x4D4A+),
+i.e., the write data contains the Avalon-ST byte-stream
+protocol codes {\em as data}. The logic analyzer trace shows
+the {\em ESCAPE} bytes and XORed data in the JTAG byte-stream.
+
+\item Address alignment.
+
+The \verb+master_read/write_16/32+ procedures enforce 16-bit and
+32-bit address alignment at the software interface, i.e., the 
+procedures generate error messages if the address argument is
+unaligned.
+
+The \verb+master_read/write_memory+ procedures accept an arbitrary
+address. For unaligned accesses the software generates a mixture
+of 8-bit, 16-bit, and 32-bit Avalon-MM transactions (depending on
+the alignment of the start address and the length of the data).
+
+\item Number of Avalon-MM transactions per JTAG transaction.
+
+The \verb+master_read/write_8/16/32+ procedures generate a
+JTAG transaction {\em per data value}. Each JTAG
+transaction consists of a 256-byte transfer;
+the JTAG-to-Avalon-ST header is \verb+0xFC00 = 111_111_00_0000_0000b+
+which indicates that the scan length, write length, and read length
+are all 256-bytes. The JTAG transfer rate for multiple words is 
+{\em slow}.
+
+The \verb+master_read/write_memory+ procedures generate a
+JTAG transaction for {\em all data values} if the address
+is aligned and the data length is consistent, eg., a 32-bit
+aligned address and a data length that is a multiple of
+four bytes. If the address is not aligned, or the length is
+not a multiple of four bytes, then several JTAG transactions
+will be generated. The \verb+master_read/write_memory+
+procedures should be used when transferring
+large amounts of data over the JTAG interface, eg., filling
+or reading RAM contents.
+
+\item JTAG data transfer rate.
+
+The performance over JTAG is determined by a combination of hardware 
+and software. The USB-Blaster determines the performance at the
+hardware layer. The USB-Blaster performs parallel-to-serial
+conversion of host-to-device bytes from USB to the JTAG TDI input,
+and then serial-to-parallel conversion of the JTAG TDI output
+to bytes for transfer of device-to-host bytes over USB.
+The USB-Blaster operates in two modes; bit-mode and byte-mode;
+bit-mode is used when manipulating the JTAG TAP machine states,
+and byte-mode is used when shifting data. The two modes can
+be see in the SignalTap II traces; at the beginning of the
+traces the USB-Blaster uses bit-mode and then switches to
+byte-mode to transfer the bulk of the byte-stream. Note how
+the JTAG clock (TCK) period is longer in bit-mode than in byte-mode.
+
+The SignalTap II traces show that when the USB-Blaster is operating
+in byte-mode, each byte is transfered using 8 clocks at 6MHz clock
+period plus about two 6MHz periods of dead-time between each byte 
+(where TCK is high), i.e., about 10
+6MHz periods per byte, or $6\text{MHz}/(10\times1024) = 586$kB/s.
+
+The measured performance of transfers from the software layer
+(SystemConsole) for 4kB (0x1000), 8kB (0x2000), and 16kB (0x4000)
+were;
+\begin{itemize}
+\item \verb+master_write_memory+: between 180kB/s and 280kB/s
+\item \verb+master_read_memory+: between 80kB/s and 140kB/s
+\end{itemize}
+%
+\item JTAG-to-Avalon-ST header.
+
+The \verb+master_read/write_8/16/32+ procedures generate a
+JTAG transaction for each data value, so the encoded byte-stream
+for the host-to-device command and device-to-host response is
+small, and hence the smallest JTAG-to-Avalon-ST transaction
+can be used. The smallest JTAG-to-Avalon-ST transaction is 256-bytes.
+The header value for a 256-byte transfer is
+\verb+0xFC00+ = \verb+111_111_00_0000_0000b+, which indicates
+that the write and read scan lengths are equal to the scan length,
+and the scan length is 256-bytes.
+
+The \verb+master_read/write_memory+ commands generate a JTAG
+transaction containing as much data as possible (to maximize
+the transfer rate). The header for the {\em write} transaction
+uses the next greater scan length needed to fit the encoded
+data (in increments of 256-bytes). The header always has
+the 6 MSBs set, to indicate that the write and read data length
+is set to the same length as the scan length.
+The header for {\em read} transactions is slightly different, in
+that the read command can be encoded in less than 256-bytes,
+so the write scan length (the 3-MSBs) changes to 001b (256-bytes)
+once the amount of read data exceeds 256-bytes, i.e., 
+read transfers of up to 256-bytes use a header of \verb+0xFC00+, 
+then the header changes to \verb+0x3C01+ = \verb+001_111_00_0000_0001b+,
+which indicates a write (command) scan length of 256-bytes,
+a read scan length equal to the scan length, and a scan 
+length of 512-bytes. For longer read transactions, the header
+changes to \verb+0x3C02+ for 768-bytes, \verb+0x3C03+ for 1024-bytes, 
+etc. (where the number of bytes in the scan is the number of
+encoded bytes, not the number of bytes passed via
+the Tcl procedure argument).
+
+Even though the write (command) scan length is less than the
+read scan length, the host still has to send data down the JTAG
+interface (since JTAG transactions are both a write and a read).
+When the write scan counter (in the JTAG-to-Avalon-ST bridge)
+terminates, the hardware ignores the data on TDI and inserts 
+JTAG {\em IDLE} codes automatically. SignalTap II traces
+show TDI going low when the write counter terminates,
+indicating that the SystemConsole command is sending \verb+0x00+
+data bytes. This logic is overly complicated and redundant;
+the host has to send JTAG data bytes anyway, so it may as well send
+{\em IDLE} codes, with the header representing just the
+scan length (there is no need for the header to distinguish between the
+read, write, and scan length). Actually, the requirement for the
+JTAG-to-Avalon-ST communications to occur in blocks of 256-bytes
+is unnecessary, but that is the subject of another document.
+
+\end{itemize}
+%
+The SystemConsole \verb+master+ service 
+\verb+master_read/write_32+ and \verb+master_read/write_memory+
+procedures were re-implemented using the \verb+bytestream+
+service procedures. Signal Tap II traces of various 
+lengths confirmed the operation of the procedures.
+
+The project simulation testbench, \verb+jtag_to_avalon_mm_tb.sv+,
+uses the Verilog tasks in the JTAG SLD node to access the
+JTAG-to-Avalon-ST bridge control and status registers,
+and to generate various JTAG-to-Avalon-MM master transactions.
+This testbench can be used as the basis for simulation testbenches
+for testing Qsys and SOPC Systems containing the
+JTAG-to-Avalon-MM component.
+
+% -----------------------------------------------------------------
+% JTAG-to-Avalon-MM master procedures
+% -----------------------------------------------------------------
+%
+\begin{table}[t]
+\caption{SystemConsole JTAG-to-Avalon-MM ({\tt master}) service procedures.}
+\label{tab:systemconsole_master_procedures}
+\begin{center}
+\begin{tabular}{|l|p{43mm}|p{55mm}|}
+\hline
+Procedure & Arguments & Description\\
+\hline\hline
+&&\\
+\verb+master_write_8+ & {\tt <handle> <addr>\newline <list of 8-bit values>} & 
+Write the list of 8-bit values, starting from the specified address,
+using 8-bit accesses.\\
+&&\\
+\verb+master_write_16+ & {\tt <handle> <addr>\newline <list of 16-bit values>} &
+Write the list of 16-bit values, starting from the specified 
+16-bit aligned address, using 16-bit accesses.\\
+&&\\
+\verb+master_write_32+ & {\tt <handle> <addr>\newline <list of 32-bit values>} &
+Write the list of 32-bit values, starting from the specified 
+32-bit aligned address, using 32-bit accesses.\\
+&&\\
+\verb+master_write_memory+ & {\tt <handle> <addr>\newline <list of 8-bit bytes>} &
+Write the list of bytes, starting from the specified 
+address.\\
+&&\\
+\hline
+&&\\
+\verb+master_read_8+ & {\tt <handle> <addr>\newline <number of 8-bit values to read>} & 
+Read the requested number of 8-bit values, starting from the specified address,
+using 8-bit accesses.\\
+&&\\
+\verb+master_read_16+ & {\tt <handle> <addr>\newline <number of 16-bit values to read>} &
+Read the requested number of 16-bit values, starting from the specified 
+16-bit aligned address, using 16-bit accesses.\\
+&&\\
+\verb+master_read_32+ & {\tt <handle> <addr>\newline <number of 32-bit values to read>} &
+ead the requested number of 32-bit values, starting from the specified 
+32-bit aligned address, using 32-bit accesses.\\
+&&\\
+\verb+master_read_memory+ & {\tt <handle> <addr>\newline <number of bytes to read>} &
+ead the requested number of bytes, starting from the specified 
+address.\\
+&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+% -----------------------------------------------------------------
+
+% -----------------------------------------------------------------
+% SignalTap II logic analyzer traces
+% -----------------------------------------------------------------
+%
+% The traces were created using;
+% * Shift-Ctrl-PrintScreen
+% * Crop using Corel PhotoPaint
+% * Convert to bmp and back to png using png2bmp and bmp2png.
+%   If you do not do this, you get an exception from PCTex.
+% * Paste into Inkscape without scaling the bitmap.
+% * Add overlay text.
+%
+% The notes in my vjtag.tex document, show how to crop using
+% MATLAB.
+%
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_mm_write_0x55667788_start.pdf}
+  \caption{JTAG-to-Avalon-MM 32-bit master write (byte-stream start);
+  (address, data) = ({\tt 0x11223344}, {\tt 0x55667788}).
+  The Avalon-ST {\em command} byte-stream contains the Avalon-MM
+  write command bytes in Table~\ref{tab:jtag_to_avalon_mm_write_packet},
+  with the {\em write, incrementing} transaction code from
+  Table~\ref{tab:jtag_to_avalon_mm_transaction_codes}, and the
+  packet protocol codes from Table~\ref{tab:jtag_to_avalon_mm_protocol_codes}.}
+  \label{fig:jtag_to_avalon_mm_write_start}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_mm_write_0x55667788_end.pdf}
+  \caption{JTAG-to-Avalon-MM 32-bit master write (byte-stream end);
+  (address, data) = ({\tt 0x11223344}, {\tt 0x55667788}).
+  The Avalon-ST {\em response} byte-stream contains the Avalon-MM
+  write response bytes in Table~\ref{tab:jtag_to_avalon_mm_write_packet},
+  with the {\em write, incrementing} transaction code from
+  Table~\ref{tab:jtag_to_avalon_mm_transaction_codes} (with the MSB set),
+  and the packet protocol codes from 
+  Table~\ref{tab:jtag_to_avalon_mm_protocol_codes}.}
+  \label{fig:jtag_to_avalon_mm_write_end}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_mm_read_0x55667788_start.pdf}
+  \caption{JTAG-to-Avalon-MM 32-bit master read (byte-stream start);
+  (address, data) = ({\tt 0x11223344}, {\tt 0x55667788}).
+  The Avalon-ST {\em command} byte-stream contains the Avalon-MM
+  read command bytes in Table~\ref{tab:jtag_to_avalon_mm_read_packet},
+  with the {\em read, incrementing} transaction code from
+  Table~\ref{tab:jtag_to_avalon_mm_transaction_codes}, and the
+  packet protocol codes from Table~\ref{tab:jtag_to_avalon_mm_protocol_codes}.}
+  \label{fig:jtag_to_avalon_mm_read_start}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_mm_read_0x55667788_end.pdf}
+  \caption{JTAG-to-Avalon-MM 32-bit master read (byte-stream end);
+  (address, data) = ({\tt 0x11223344}, {\tt 0x55667788}).
+  The Avalon-ST {\em response} byte-stream contains the Avalon-MM
+  read response bytes in Table~\ref{tab:jtag_to_avalon_mm_read_packet},
+  with the {\em read, incrementing} transaction code from
+  Table~\ref{tab:jtag_to_avalon_mm_transaction_codes} (with the MSB set),
+  and the packet protocol codes from 
+  Table~\ref{tab:jtag_to_avalon_mm_protocol_codes}.}
+  \label{fig:jtag_to_avalon_mm_read_end}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_mm_write_memory.pdf}
+  \caption{JTAG-to-Avalon-MM master write memory (two 32-bit writes);
+  (address, data) = ({\tt 0x11223344}, \{{\tt 0x55, 0x66, 0x77 0x88, 0x99, 0xAA, 0xBB, 0xCC}\}).
+  The Avalon-ST {\em command} byte-stream contains the Avalon-MM
+  write command bytes in Table~\ref{tab:jtag_to_avalon_mm_write_packet},
+  with the {\em write, incrementing} transaction code from
+  Table~\ref{tab:jtag_to_avalon_mm_transaction_codes}, and the
+  packet protocol codes from Table~\ref{tab:jtag_to_avalon_mm_protocol_codes}.}
+  \label{fig:jtag_to_avalon_mm_write_memory}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_mm_read_memory.pdf}
+  \caption{JTAG-to-Avalon-MM 32-bit master read memory (two 32-bit reads);
+  (address, data) = ({\tt 0x11223344}, \{{\tt 0x55, 0x66, 0x77 0x88, 0x55, 0x66, 0x77 0x88}\}).
+  The Avalon-ST {\em command} byte-stream contains the Avalon-MM
+  read command bytes in Table~\ref{tab:jtag_to_avalon_mm_read_packet},
+  with the {\em read, incrementing} transaction code from
+  Table~\ref{tab:jtag_to_avalon_mm_transaction_codes}, and the
+  packet protocol codes from Table~\ref{tab:jtag_to_avalon_mm_protocol_codes}.}
+  \label{fig:jtag_to_avalon_mm_read_memory}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_mm_write_0x7D7C7B7A.pdf}
+  \caption{JTAG-to-Avalon-MM 32-bit master write (byte-stream start);
+  (address, data) = ({\tt 0x11223344}, {\tt 0x7D7C7B7A}).
+  The Avalon-MM write data contains all of the packet protocol codes in
+  Table~\ref{tab:jtag_to_avalon_mm_protocol_codes} {\em as data}.
+  The logic analyzer trace shows the {\em ESCAPE} code and the
+  XOR modified data in both the JTAG and Avalon-ST byte-streams.}
+  \label{fig:jtag_to_avalon_mm_write_0x7D7C7B7A}
+\end{figure}
+\end{landscape}
+
+\begin{landscape}
+\begin{figure}
+  \centering
+  \includegraphics[width=210mm]
+  {figures/jtag_to_avalon_mm_write_0x4D4A.pdf}
+  \caption{JTAG-to-Avalon-MM 32-bit master write (byte-stream start);
+  (address, data) = ({\tt 0x11223344}, {\tt 0x4D4A}).
+  The Avalon-MM write data contains all of the Avalon-ST protocol codes in
+  Table~\ref{tab:jtag_to_avalon_st_protocol_codes} {\em as data}.
+  The logic analyzer trace shows the {\em ESCAPE} code and the
+  XOR modified data in the JTAG byte-stream.}
+  \label{fig:jtag_to_avalon_mm_write_0x4D4A}
+\end{figure}
+\end{landscape}
+
+\clearpage
+\appendix
+% =================================================================
+\section{Project synthesis and simulation}
+% =================================================================
+\label{app:build}
+
+% -----------------------------------------------------------------
+% Tool versions
+% -----------------------------------------------------------------
+%
+\begin{table}[t]
+\caption{JTAG-to-Avalon-MM ({\tt jtag\_to\_avalon\_mm}) project source.}
+\label{tab:tool_versions}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Quartus II & Modelsim\\
+\hline\hline
+&\\
+10.1 and 10.1sp1 (Full) & 6.6c (ASE)\\
+11.0 and 11.0sp1 (Full) & 6.6d (ASE)\\
+11.1 and 11.1sp1 (Full) & 10.0c (ASE)\\
+&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+% -----------------------------------------------------------------
+
+This appendix describes how to synthesize and simulate each of
+the projects described in this document.
+Table~\ref{tab:tool_versions} shows the tool versions each of the
+scripts has been tested with. The tools were tested under
+Windows XP, Windows 7, and Linux (Ubuntu 11.10 and Centos 6.2).
+
+% -----------------------------------------------------------------
+\subsection{Synthesis}
+% -----------------------------------------------------------------
+
+\begin{enumerate}
+\item Start Quartus II.
+\item If the Tcl console is not visible, add it to the GUI via
+{\em View}$\rightarrow${\em Utility Windows}$\rightarrow${\em Tcl Console}.
+\item Click on the Tcl Console command line.
+\item Change directory to the top-level of the project source, eg.,
+%
+\begin{verbatim}
+cd {C:\altera_jtag_to_avalon_analysis\hdl\jtag_node}
+\end{verbatim}
+where the path was copied from Windows Explorer into the console.
+The path is converted to a Tcl list using the parentheses \verb+{+ 
+and \verb+}+, ensuring the windows path separators are handled correctly.
+%
+\item Run the synthesis script
+%
+\begin{verbatim}
+source scripts/synth.tcl
+\end{verbatim}
+%
+Table~\ref{tab:project_synthesis_results} shows the synthesis results
+for the three projects discussed in this document.
+%
+\item (Optional) Enable the SignalTap II trace; 
+{\em Assignments}$\rightarrow${\em Settings}, select
+{\em SignalTap II Logic Analyzer}, and check the checkbox
+(the \verb+bemicro_sdk.stp+ file is already setup).
+%
+\item Re-synthesize the design by clicking the GUI `play' button.
+%
+\item Download the design to the BeMicro-SDK; LED8 will start to flash.
+%
+\item Start SystemConsole; {\em Tools}$\rightarrow${\em Transceiver Toolkit}
+%
+\item Load the custom Tcl procedures created for the project
+%
+\begin{verbatim}
+source ../scripts/jtag_cmds_sc.tcl
+\end{verbatim}
+%
+(the SystemConsole shell starts in the Quartus work directory, which
+is located in the project directory, so a relative path can be used to
+access the scripts directory).
+%
+\item Start the SignalTap II logic analyzer.
+%
+\item Use the procedures in \verb+jtag_cmds_sc.tcl+ to generate transactions
+and trace them using SignalTap II.
+%
+\end{enumerate}
+
+% -----------------------------------------------------------------
+% Synthesis results
+% -----------------------------------------------------------------
+%
+\begin{table}[t]
+\caption{JTAG project synthesis results (for Quartus 11.0sp1 full-edition).}
+\label{tab:project_synthesis_results}
+\begin{center}
+\begin{tabular}{|l||c|c|c||c|}
+\hline
+        & \multicolumn{4}{c|}{Resource Usage}\\
+\cline{2-5}
+Project & JTAG Interface & SLD Hub & User Logic & Total\\
+\hline\hline
+&&&&\\
+\verb+jtag_node+         &   1 LC  & 99 LCs &  49 LCs & 149 LCs\\
+&&&&\\
+\verb+jtag_to_avalon_st+ & 426 LCs & 99 LCs &  51 LCs & 576 LCs\\
+&&&&\\
+\verb+jtag_to_avalon_mm+ & 848 LCs & 99 LCs & 113 LCs & 1060 LCs\\
+                         & + 512-bits RAM &&& + 512-bits RAM\\
+&&&&\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+% -----------------------------------------------------------------
+
+% -----------------------------------------------------------------
+\subsection{Simulation}
+% -----------------------------------------------------------------
+
+\begin{enumerate}
+\item Start Modelsim.
+\item Change directory to the top-level of the project source, eg.,
+%
+\begin{verbatim}
+cd {C:\altera_jtag_to_avalon_analysis\hdl\jtag_node}
+\end{verbatim}
+where the path was copied from Windows Explorer into the console.
+The path is converted to a Tcl list using the parentheses \verb+{+ 
+and \verb+}+, ensuring the windows path separators are handled correctly.
+%
+\item Run the simulation script
+%
+\begin{verbatim}
+source scripts/sim.tcl
+\end{verbatim}
+%
+The simulation script creates a Tcl procedure with the same
+name as the testbench, eg., \verb+jtag_node_tb+. 
+
+\item Run the testbench procedure.
+The procedure will add signals to the wave window and the Tcl
+console will output messages from the simulation.
+%
+\end{enumerate}
+
+\clearpage
+% =================================================================
+\section{JTAG-to-Avalon source, software, and hardware bugs}
+% =================================================================
+\label{app:bugs}
+
+The following are a list of bugs in the Quartus II JTAG-to-Avalon
+software and source code;
+%
+\begin{enumerate}
+\item In the JTAG-to-Avalon-MM source file
+
+\verb+altera_jtag_avalon_master/altera_jtag_avalon_master_pli_off.v+
+
+the parameter \verb+DOWNSTREAM_FIFO_SIZE+ is passed as 6, whereas it
+should be passed as the FIFO size (64-bytes). The
+JTAG-to-Avalon-ST source file
+
+\verb+altera_avalon_jtag_phy/altera_jtag_streaming.v+
+
+calculates the parameter \verb+DOWNSTREAM_ENCODED_SIZE+
+as the $\floor(\log_2(\text{\tt DOWNSTREAM\_FIFO\_SIZE}))$, and
+then makes that value available via the {\em INFO} register.
+Hardware tests show the downstream FIFO register bits are
+read-back as $\floor(\log_2(6)) = 2$, rather than the
+expected 6.
+%
+\item The Verilog simulation tasks in the source file
+
+\verb+altera_avalon_jtag_phy/altera_jtag_sld_node.v+
+
+Use a continuously running JTAG clock, TCK. This does not
+reflect the hardware implementation, and hides a subtle bug with
+respect to the use of the Virtual JTAG one-hot state signals
+\verb+virtual_state_e1dr+ and \verb+virtual_state_udr+.
+
+\item The JTAG control registers in
+
+\verb+altera_avalon_jtag_phy/altera_jtag_streaming.v+
+
+Incorrectly use the Virtual JTAG one-hot state \verb+virtual_state_udr+
+to update the registers. The logic {\em should} be using the
+\verb+virtual_state_e1dr+ one-hot state as the enable control.
+The \verb+virtual_state_e1dr+ signal pulses for a single clock
+after the JTAG state machine exits the shift-DR state (\verb+virtual_state_sdr+).
+The update-DR state (\verb+virtual_state_udr+) is used to indicate
+when data register have been updated, it should not be used to
+update the registers. This causes an issue with the \verb+resetrequest+
+control, in that you can write to the register and it has no effect
+until the next JTAG transaction. This occurs due to the fact that
+the JTAG TAP ends in the \verb+virtual_state_udr+ state, and there
+are no TCK edges to {\em load} the registers until the {\em next}
+JTAG transaction.
+
+This error is not obvious in the simulation due to the fact that
+a free-running TCK is used. This generates a clock in the 
+\verb+virtual_state_udr+ state  causing the resetrequest output
+to update. This sequence is not reflected in the hardware, where
+TCK is stopped until the next JTAG transaction.
+
+\item The SystemControl \verb+bytestream_send+ command only ever
+sends 1022-bytes (\verb+0x3FE+ bytes) per 1024-bytes (\verb+0x400+ bytes)
+transaction (where the transaction length is determined by the
+16-bit byte-stream header). Perhaps the authors of the SystemConsole
+code incorrectly assumed that the 2-byte header was included in
+the length?
+
+\item The JTAG-to-Avalon-MM SystemConsole \verb+master+ service,
+\verb+master_write/read_8/16/32+ procedures generate
+256-byte JTAG-to-Avalon-ST transactions for each Avalon-MM
+transaction, eg., a call to \verb+master_write_32+ with a list
+of 32-bit data values generates multiple JTAG transactions to
+perform the 32-bit Avalon-MM bus writes.
+The overhead of encoding multiple 32-bit transaction results in
+a significant loss in performance over the JTAG interface.
+
+The JTAG-to-Avalon-MM SystemConsole \verb+master+ service,
+\verb+master_write/read_memory+ procedures can be used to generate
+multiple 32-bit Avalon-MM bus transactions from a single
+JTAG-to-Avalon-ST transaction. 
+
+The Quartus II handbook should document the performance
+difference between the SystemConsole \verb+master+ procedures.
+
+\item The SignalTap II traces in Figures~\ref{fig:jtag_node_vir}
+and~\ref{fig:jtag_node_vdr} show glitches on the JTAG interface.
+This implicates the USB-Blaster as the source.
+
+\item The SignalTap II trace in Figure~\ref{fig:jtag_node_vdr}
+show an invalid Virtual JTAG one-hot state assertion
+(\verb+virtual_state_cir+ during a Virtual shift-DR sequence).
+This error must be in the implementation of the Virtual JTAG
+logic (the source of which is not provided by Altera).
+
+\item In versions of Quartus II prior to version 11.1sp1,
+SystemConsole does not support the Tcl \verb+fileevent+ 
+procedure. This procedure is {\em required} to implement a
+Tcl server that can support multiple clients. This type
+of server is {\em necessary} to provide JTAG-to-Avalon-MM
+access to software that is not written using SystemConsole.
+
+\end{enumerate}
+
+
+\clearpage
+%------------------------------------------------------------------
+% Do the bibliography
+%------------------------------------------------------------------
+%Note, you can't have spaces in the list of bibliography files
+%
+\bibliography{refs}
+\bibliographystyle{plain}
+
+%------------------------------------------------------------------
+\end{document}
+
+
+
+
+
+
+
+
+
+
+

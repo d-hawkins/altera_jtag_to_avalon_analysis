@@ -1,0 +1,930 @@
+<session jtag_chain="USB-Blaster [USB-0]" jtag_device="@1: EP3C25/EP4CE22 (0x020F30DD)" sof_file="">
+  <display_tree gui_logging_enabled="0">
+    <display_branch instance="jtag_to_avalon_st" signal_set="USE_GLOBAL_TEMP" trigger="USE_GLOBAL_TEMP"/>
+  </display_tree>
+  <instance entity_name="sld_signaltap" is_auto_node="yes" is_expanded="true" name="jtag_to_avalon_st" source_file="sld_signaltap.vhd">
+    <node_ip_info instance_id="0" mfg_id="110" node_id="0" version="6"/>
+    <signal_set global_temp="1" is_expanded="true" name="signal_set: 2012/02/01 20:02:29  #0">
+      <clock name="clkin_50MHz" polarity="posedge" tap_mode="classic"/>
+      <config ram_type="M4K" reserved_data_nodes="0" reserved_storage_qualifier_nodes="0" reserved_trigger_nodes="0" sample_depth="2048" trigger_in_enable="no" trigger_out_enable="no"/>
+      <top_entity/>
+      <signal_vec>
+        <trigger_input_vec>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tck" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tdi" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tdo" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tms" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_cdr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_cir" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_e1dr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_e2dr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_pdr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_sdr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_udr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_uir" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|data_available" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[10]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[11]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[12]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[13]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[14]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[15]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[8]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[9]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_ready" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_valid" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[8]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[9]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[10]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[11]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[12]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[13]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[14]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[15]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[16]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[17]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[18]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[8]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[9]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_byte_aligned" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|resetrequest" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_ready" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_valid" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_ready" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_valid" tap_mode="classic" type="combinatorial"/>
+          <wire name="data[0]" tap_mode="classic" type="register"/>
+          <wire name="data[1]" tap_mode="classic" type="register"/>
+          <wire name="data[2]" tap_mode="classic" type="register"/>
+          <wire name="data[3]" tap_mode="classic" type="register"/>
+          <wire name="data[4]" tap_mode="classic" type="register"/>
+          <wire name="data[5]" tap_mode="classic" type="register"/>
+          <wire name="data[6]" tap_mode="classic" type="register"/>
+          <wire name="data[7]" tap_mode="classic" type="register"/>
+          <wire name="write_count[0]" tap_mode="classic" type="register"/>
+          <wire name="write_count[10]" tap_mode="classic" type="register"/>
+          <wire name="write_count[11]" tap_mode="classic" type="register"/>
+          <wire name="write_count[12]" tap_mode="classic" type="register"/>
+          <wire name="write_count[13]" tap_mode="classic" type="register"/>
+          <wire name="write_count[14]" tap_mode="classic" type="register"/>
+          <wire name="write_count[15]" tap_mode="classic" type="register"/>
+          <wire name="write_count[1]" tap_mode="classic" type="register"/>
+          <wire name="write_count[2]" tap_mode="classic" type="register"/>
+          <wire name="write_count[3]" tap_mode="classic" type="register"/>
+          <wire name="write_count[4]" tap_mode="classic" type="register"/>
+          <wire name="write_count[5]" tap_mode="classic" type="register"/>
+          <wire name="write_count[6]" tap_mode="classic" type="register"/>
+          <wire name="write_count[7]" tap_mode="classic" type="register"/>
+          <wire name="write_count[8]" tap_mode="classic" type="register"/>
+          <wire name="write_count[9]" tap_mode="classic" type="register"/>
+        </trigger_input_vec>
+        <data_input_vec>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tck" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tdi" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tdo" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tms" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_cdr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_cir" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_e1dr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_e2dr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_pdr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_sdr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_udr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_uir" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|data_available" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[10]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[11]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[12]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[13]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[14]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[15]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[8]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[9]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_ready" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_valid" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[8]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[9]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[10]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[11]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[12]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[13]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[14]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[15]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[16]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[17]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[18]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[8]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[9]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_byte_aligned" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|resetrequest" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_ready" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_valid" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_ready" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_valid" tap_mode="classic" type="combinatorial"/>
+          <wire name="data[0]" tap_mode="classic" type="register"/>
+          <wire name="data[1]" tap_mode="classic" type="register"/>
+          <wire name="data[2]" tap_mode="classic" type="register"/>
+          <wire name="data[3]" tap_mode="classic" type="register"/>
+          <wire name="data[4]" tap_mode="classic" type="register"/>
+          <wire name="data[5]" tap_mode="classic" type="register"/>
+          <wire name="data[6]" tap_mode="classic" type="register"/>
+          <wire name="data[7]" tap_mode="classic" type="register"/>
+          <wire name="write_count[0]" tap_mode="classic" type="register"/>
+          <wire name="write_count[10]" tap_mode="classic" type="register"/>
+          <wire name="write_count[11]" tap_mode="classic" type="register"/>
+          <wire name="write_count[12]" tap_mode="classic" type="register"/>
+          <wire name="write_count[13]" tap_mode="classic" type="register"/>
+          <wire name="write_count[14]" tap_mode="classic" type="register"/>
+          <wire name="write_count[15]" tap_mode="classic" type="register"/>
+          <wire name="write_count[1]" tap_mode="classic" type="register"/>
+          <wire name="write_count[2]" tap_mode="classic" type="register"/>
+          <wire name="write_count[3]" tap_mode="classic" type="register"/>
+          <wire name="write_count[4]" tap_mode="classic" type="register"/>
+          <wire name="write_count[5]" tap_mode="classic" type="register"/>
+          <wire name="write_count[6]" tap_mode="classic" type="register"/>
+          <wire name="write_count[7]" tap_mode="classic" type="register"/>
+          <wire name="write_count[8]" tap_mode="classic" type="register"/>
+          <wire name="write_count[9]" tap_mode="classic" type="register"/>
+        </data_input_vec>
+        <storage_qualifier_input_vec>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tck" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tdi" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tdo" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tms" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_cdr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_cir" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_e1dr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_e2dr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_pdr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_sdr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_udr" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_uir" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|data_available" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[10]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[11]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[12]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[13]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[14]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[15]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[8]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[9]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_ready" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_valid" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[8]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[9]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[10]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[11]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[12]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[13]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[14]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[15]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[16]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[17]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[18]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[3]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[4]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[5]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[6]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[7]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[8]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[9]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_byte_aligned" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[0]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[1]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[2]" tap_mode="classic" type="register"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|resetrequest" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_data[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_ready" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|sink_valid" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[0]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[1]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[2]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[3]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[4]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[5]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[6]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_data[7]" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_ready" tap_mode="classic" type="combinatorial"/>
+          <wire name="altera_avalon_st_jtag_interface:u1|source_valid" tap_mode="classic" type="combinatorial"/>
+          <wire name="data[0]" tap_mode="classic" type="register"/>
+          <wire name="data[1]" tap_mode="classic" type="register"/>
+          <wire name="data[2]" tap_mode="classic" type="register"/>
+          <wire name="data[3]" tap_mode="classic" type="register"/>
+          <wire name="data[4]" tap_mode="classic" type="register"/>
+          <wire name="data[5]" tap_mode="classic" type="register"/>
+          <wire name="data[6]" tap_mode="classic" type="register"/>
+          <wire name="data[7]" tap_mode="classic" type="register"/>
+          <wire name="write_count[0]" tap_mode="classic" type="register"/>
+          <wire name="write_count[10]" tap_mode="classic" type="register"/>
+          <wire name="write_count[11]" tap_mode="classic" type="register"/>
+          <wire name="write_count[12]" tap_mode="classic" type="register"/>
+          <wire name="write_count[13]" tap_mode="classic" type="register"/>
+          <wire name="write_count[14]" tap_mode="classic" type="register"/>
+          <wire name="write_count[15]" tap_mode="classic" type="register"/>
+          <wire name="write_count[1]" tap_mode="classic" type="register"/>
+          <wire name="write_count[2]" tap_mode="classic" type="register"/>
+          <wire name="write_count[3]" tap_mode="classic" type="register"/>
+          <wire name="write_count[4]" tap_mode="classic" type="register"/>
+          <wire name="write_count[5]" tap_mode="classic" type="register"/>
+          <wire name="write_count[6]" tap_mode="classic" type="register"/>
+          <wire name="write_count[7]" tap_mode="classic" type="register"/>
+          <wire name="write_count[8]" tap_mode="classic" type="register"/>
+          <wire name="write_count[9]" tap_mode="classic" type="register"/>
+        </storage_qualifier_input_vec>
+      </signal_vec>
+      <presentation>
+        <data_view>
+          <bus is_signal_inverted="no" link="all" name="data" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="data[7]"/>
+            <net is_signal_inverted="no" name="data[6]"/>
+            <net is_signal_inverted="no" name="data[5]"/>
+            <net is_signal_inverted="no" name="data[4]"/>
+            <net is_signal_inverted="no" name="data[3]"/>
+            <net is_signal_inverted="no" name="data[2]"/>
+            <net is_signal_inverted="no" name="data[1]"/>
+            <net is_signal_inverted="no" name="data[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="write_count" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="write_count[15]"/>
+            <net is_signal_inverted="no" name="write_count[14]"/>
+            <net is_signal_inverted="no" name="write_count[13]"/>
+            <net is_signal_inverted="no" name="write_count[12]"/>
+            <net is_signal_inverted="no" name="write_count[11]"/>
+            <net is_signal_inverted="no" name="write_count[10]"/>
+            <net is_signal_inverted="no" name="write_count[9]"/>
+            <net is_signal_inverted="no" name="write_count[8]"/>
+            <net is_signal_inverted="no" name="write_count[7]"/>
+            <net is_signal_inverted="no" name="write_count[6]"/>
+            <net is_signal_inverted="no" name="write_count[5]"/>
+            <net is_signal_inverted="no" name="write_count[4]"/>
+            <net is_signal_inverted="no" name="write_count[3]"/>
+            <net is_signal_inverted="no" name="write_count[2]"/>
+            <net is_signal_inverted="no" name="write_count[1]"/>
+            <net is_signal_inverted="no" name="write_count[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|resetrequest"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_ready"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_valid"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|source_data" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_ready"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_valid"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|sink_data" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_valid"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_ready"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|data_available"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[15]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[14]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[13]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[12]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[11]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[10]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[9]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[8]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[9]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[8]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_byte_aligned"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[18]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[17]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[16]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[15]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[14]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[13]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[12]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[11]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[10]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[9]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[8]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tck"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tms"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tdi"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tdo"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_cdr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_sdr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_e1dr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_pdr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_e2dr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_udr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_cir"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_uir"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[0]"/>
+          </bus>
+        </data_view>
+        <setup_view>
+          <bus is_signal_inverted="no" link="all" name="data" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="data[7]"/>
+            <net is_signal_inverted="no" name="data[6]"/>
+            <net is_signal_inverted="no" name="data[5]"/>
+            <net is_signal_inverted="no" name="data[4]"/>
+            <net is_signal_inverted="no" name="data[3]"/>
+            <net is_signal_inverted="no" name="data[2]"/>
+            <net is_signal_inverted="no" name="data[1]"/>
+            <net is_signal_inverted="no" name="data[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="write_count" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="write_count[15]"/>
+            <net is_signal_inverted="no" name="write_count[14]"/>
+            <net is_signal_inverted="no" name="write_count[13]"/>
+            <net is_signal_inverted="no" name="write_count[12]"/>
+            <net is_signal_inverted="no" name="write_count[11]"/>
+            <net is_signal_inverted="no" name="write_count[10]"/>
+            <net is_signal_inverted="no" name="write_count[9]"/>
+            <net is_signal_inverted="no" name="write_count[8]"/>
+            <net is_signal_inverted="no" name="write_count[7]"/>
+            <net is_signal_inverted="no" name="write_count[6]"/>
+            <net is_signal_inverted="no" name="write_count[5]"/>
+            <net is_signal_inverted="no" name="write_count[4]"/>
+            <net is_signal_inverted="no" name="write_count[3]"/>
+            <net is_signal_inverted="no" name="write_count[2]"/>
+            <net is_signal_inverted="no" name="write_count[1]"/>
+            <net is_signal_inverted="no" name="write_count[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|resetrequest"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_ready"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_valid"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|source_data" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|source_data[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_ready"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_valid"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|sink_data" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|sink_data[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_valid"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_ready"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_inserter_source_data[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[15]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[14]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[13]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[12]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[11]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[10]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[9]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[8]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[9]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[8]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|read_data_length[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_length[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|header_in_bit_counter[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_bit_counter[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|write_data_byte_aligned"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter" order="msb_to_lsb" radix="hex" state="collapse" type="register">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[18]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[17]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[16]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[15]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[14]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[13]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[12]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[11]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[10]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[9]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[8]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[7]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[6]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[5]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[4]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[3]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|scan_length_byte_counter[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tck"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tms"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tdi"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tdo"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_cdr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_cir"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_e1dr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_e2dr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_pdr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_sdr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_udr"/>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|virtual_state_uir"/>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_in[0]"/>
+          </bus>
+          <bus is_signal_inverted="no" link="all" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out" order="msb_to_lsb" radix="hex" state="collapse" type="combinatorial">
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[2]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[1]"/>
+            <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|ir_out[0]"/>
+          </bus>
+          <net is_signal_inverted="no" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|data_available"/>
+        </setup_view>
+      </presentation>
+      <trigger attribute_mem_mode="false" gap_record="true" global_temp="1" name="trigger: 2012/02/01 22:40:53  #0" position="center" power_up_trigger_mode="false" record_data_gap="true" segment_size="2048" storage_mode="off" storage_qualifier_disabled="no" storage_qualifier_port_is_pin="false" storage_qualifier_port_name="auto_stp_external_storage_qualifier" storage_qualifier_port_tap_mode="classic" trigger_in="dont_care" trigger_out="active high" trigger_type="circular">
+        <power_up_trigger position="pre" storage_qualifier_disabled="no" trigger_in="dont_care" trigger_out="active high"/>
+        <events use_custom_flow_control="no">
+          <level enabled="yes" name="condition1" type="advanced">'altera_avalon_st_jtag_interface:u1|source_data[0]' == low &amp;&amp; 'altera_avalon_st_jtag_interface:u1|source_data[1]' == high &amp;&amp; 'altera_avalon_st_jtag_interface:u1|source_data[2]' == low &amp;&amp; 'altera_avalon_st_jtag_interface:u1|source_data[3]' == low &amp;&amp; 'altera_avalon_st_jtag_interface:u1|source_data[4]' == low &amp;&amp; 'altera_avalon_st_jtag_interface:u1|source_data[5]' == high &amp;&amp; 'altera_avalon_st_jtag_interface:u1|source_data[6]' == low &amp;&amp; 'altera_avalon_st_jtag_interface:u1|source_data[7]' == low
+            <power_up enabled="yes">
+              <power_up_expression><![CDATA['logical_0':(and('logical_1':(!'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tck'),'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_valid','comparison_0':(compare('bus_value_2':(variable(0)),==,'bus_0':({'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]'}),vc,uc))))]]>
+              </power_up_expression>
+            </power_up>
+            <expression><![CDATA['logical_0':(and('logical_1':(!'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tck'),'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_valid','comparison_0':(compare('bus_value_2':(variable(17)),==,'bus_0':({'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]'}),vc,uc))))]]>
+            </expression>
+            <op_node>
+              <op_node expanded="1" left="838" top="381" type="Advanced Trigger Level Result">
+                <op_node expanded="1" left="708" name="logical_0" top="341" type="Logical Operator">
+                  <op_node expanded="1" first_port_empty="1" left="578" logical="Logical Not" name="logical_1" top="271" type="Logical Operator">
+                    <op_node left="448" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tck" top="311" type="Node"/>
+                  </op_node>
+                  <op_node left="578" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_valid" top="381" type="Node"/>
+                  <op_node expanded="1" left="578" name="comparison_0" top="411" type="Comparison Operator">
+                    <op_node bus_name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data" left="448" name="bus_0" top="436" type="Bus">
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]" type="Node"/>
+                    </op_node>
+                    <op_node bus_value="11" display_format="Hexadecimal" expanded="1" left="448" name="bus_value_2" selected="1" top="466" type="Bus Value"/>
+                  </op_node>
+                </op_node>
+              </op_node>
+            </op_node>
+          </level>
+          <level enabled="yes" name="condition2" type="advanced">
+            <power_up enabled="yes">
+              <power_up_expression><![CDATA['logical_0':(and('logical_1':(!'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tck'),'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_valid','comparison_0':(compare('bus_value_0':(variable(0)),==,'bus_2':({'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]'}),vc,uc)),'comparison_1':(compare('bus_value_1':(variable(0)),==,'bus_3':({'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]'}),vc,uc)),'comparison_2':(compare('bus_value_2':(variable(0)),==,'bus_0':({'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]'}),vc,uc))))]]>
+              </power_up_expression>
+            </power_up>
+            <expression><![CDATA['logical_0':(and('logical_1':(!'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tck'),'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_valid','comparison_0':(compare('bus_value_0':(variable(170)),!=,'bus_2':({'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]'}),vc,uc)),'comparison_1':(compare('bus_value_1':(variable(85)),!=,'bus_3':({'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]'}),vc,uc)),'comparison_2':(compare('bus_value_2':(variable(17)),!=,'bus_0':({'altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]','altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]'}),vc,uc))))]]>
+            </expression>
+            <op_node>
+              <op_node expanded="1" first_port_empty="1" left="881" top="332" type="Advanced Trigger Level Result">
+                <op_node expanded="1" left="751" name="logical_0" top="292" type="Logical Operator">
+                  <op_node expanded="1" first_port_empty="1" left="621" logical="Logical Not" name="logical_1" top="112" type="Logical Operator">
+                    <op_node left="491" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|altera_jtag_sld_node:node|sld_virtual_jtag_basic:sld_virtual_jtag_component|tck" top="152" type="Node"/>
+                  </op_node>
+                  <op_node left="621" name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_valid" top="222" type="Node"/>
+                  <op_node comparison="Inequality" expanded="1" left="621" name="comparison_2" top="252" type="Comparison Operator">
+                    <op_node bus_name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data" left="491" name="bus_0" top="277" type="Bus">
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]" type="Node"/>
+                    </op_node>
+                    <op_node bus_value="11" display_format="Hexadecimal" expanded="1" left="491" name="bus_value_2" top="307" type="Bus Value"/>
+                  </op_node>
+                  <op_node comparison="Inequality" expanded="1" left="621" name="comparison_0" top="362" type="Comparison Operator">
+                    <op_node bus_name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data" left="491" name="bus_2" top="387" type="Bus">
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]" type="Node"/>
+                    </op_node>
+                    <op_node bus_value="aa" display_format="Hexadecimal" expanded="1" left="491" name="bus_value_0" top="417" type="Bus Value"/>
+                  </op_node>
+                  <op_node comparison="Inequality" expanded="1" left="621" name="comparison_1" top="472" type="Comparison Operator">
+                    <op_node bus_name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data" left="491" name="bus_3" top="497" type="Bus">
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[7]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[6]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[5]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[4]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[3]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[2]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[1]" type="Node"/>
+                      <op_node name="altera_avalon_st_jtag_interface:u1|altera_jtag_dc_streaming:normal.jtag_dc_streaming|altera_jtag_streaming:jtag_streaming|idle_remover_sink_data[0]" type="Node"/>
+                    </op_node>
+                    <op_node bus_value="55" display_format="Hexadecimal" expanded="1" left="491" name="bus_value_1" top="527" type="Bus Value"/>
+                  </op_node>
+                </op_node>
+              </op_node>
+            </op_node>
+          </level>
+        </events>
+        <storage_qualifier_events>
+          <transitional>000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+            <pwr_up_transitional>000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000</pwr_up_transitional>
+          </transitional>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+          <storage_qualifier_level type="basic">
+            <power_up>
+            </power_up>
+            <op_node/>
+          </storage_qualifier_level>
+        </storage_qualifier_events>
+      </trigger>
+    </signal_set>
+    <position_info>
+      <single attribute="active tab" value="0"/>
+      <single attribute="data horizontal scroll position" value="0"/>
+      <single attribute="data vertical scroll position" value="0"/>
+      <single attribute="setup horizontal scroll position" value="0"/>
+      <single attribute="setup vertical scroll position" value="0"/>
+      <single attribute="zoom level denominator" value="1"/>
+      <single attribute="zoom level numerator" value="1"/>
+      <single attribute="zoom offset denominator" value="1"/>
+      <single attribute="zoom offset numerator" value="129024"/>
+    </position_info>
+  </instance>
+  <mnemonics/>
+  <static_plugin_mnemonics/>
+  <global_info>
+    <single attribute="active instance" value="0"/>
+    <single attribute="advanced trigger node widget height" value="147"/>
+    <single attribute="config widget visible" value="1"/>
+    <single attribute="data log widget visible" value="0"/>
+    <single attribute="hierarchy widget visible" value="0"/>
+    <single attribute="instance widget visible" value="0"/>
+    <single attribute="jtag widget visible" value="0"/>
+    <multi attribute="column width" size="23" value="34,34,310,74,68,70,88,88,98,98,88,88,110,101,101,101,101,101,101,101,101,107,78"/>
+    <multi attribute="frame size" size="2" value="1680,1029"/>
+    <multi attribute="jtag widget size" size="2" value="334,0"/>
+  </global_info>
+</session>
